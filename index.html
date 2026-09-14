@@ -58,9 +58,10 @@ h2{font-size:24px;margin-bottom:14px}
 /* 카드 */
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px}
 .card+.card{margin-top:12px}
-.card h3{font-size:17px;margin-bottom:6px}
+.card h3{font-size:17px;margin-bottom:6px;display:flex;align-items:center;flex-wrap:wrap;gap:0 6px}
+.card .price{margin-left:auto;font-size:15px;font-weight:700;color:var(--green);white-space:nowrap}
 .card p{font-size:15px}
-.tag{display:inline-block;font-size:11px;font-weight:700;color:var(--green-deep);background:var(--cream-2);border-radius:980px;padding:2px 9px;margin-left:6px;vertical-align:2px}
+.tag{display:inline-block;font-size:11px;font-weight:700;color:var(--green-deep);background:var(--cream-2);border-radius:980px;padding:2px 9px}
 
 /* 목록 */
 .list li{padding:8px 0 8px 22px;position:relative;font-size:15px}
@@ -136,27 +137,27 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <p class="eyebrow">메뉴</p>
   <h2>처음이라면 이 넷 중 하나</h2>
   <div class="card">
-    <h3>타운 샌드위치<span class="tag">시그니처</span></h3>
+    <h3>타운 샌드위치<span class="tag">시그니처</span><span class="price">8,800원</span></h3>
     <p>겉은 바삭, 속은 부드러운 전용 빵에 스모크 햄과 치즈, 신선한 채소를 담았습니다. 기본이 가장 완벽할 수 있다는 걸 보여주는 메뉴.</p>
   </div>
   <div class="card">
-    <h3>바질 잠봉뵈르<span class="tag">BEST</span></h3>
+    <h3>바질 잠봉뵈르<span class="tag">BEST</span><span class="price">8,800원</span></h3>
     <p>버터의 풍부한 질감과 바질의 향긋함. 한입마다 허브의 여운이 부드럽게 퍼집니다.</p>
   </div>
   <div class="card">
-    <h3>그릴드 치킨 반미</h3>
+    <h3>그릴드 치킨 반미<span class="price">8,300원</span></h3>
     <p>오븐에서 은은하게 구운 치킨에 상큼한 야채 초절임(오이·당근·양파)과 신선한 양상추. 고수는 옵션으로 넣을 수 있습니다.</p>
   </div>
   <div class="card">
-    <h3>케이준 치킨 커리</h3>
+    <h3>케이준 치킨 커리<span class="price">8,300원</span></h3>
     <p>향긋한 커리 소스와 매콤한 케이준 치킨. 살짝 매콤해서 식욕을 돋우는 인기 메뉴.</p>
   </div>
   <div class="two" style="margin-top:18px">
     <div class="photo" role="img" aria-label="타운 샌드위치 사진 자리">[사진 넣을 곳: 타운 샌드위치]</div>
     <div class="photo" role="img" aria-label="바질 잠봉뵈르 사진 자리">[사진 넣을 곳: 바질 잠봉뵈르]</div>
   </div>
-  <p class="lead" style="margin-top:18px"><strong>곁들이면 좋은 것</strong> — 찍어먹는 크림 스프 · 단호박 스프(바삭한 바게트가 함께 나옵니다) · 샌드위치+스프+음료 세트</p>
-  <p class="muted">전체 메뉴와 가격은 매장 메뉴판과 네이버 플레이스 메뉴를 확인해 주세요.</p>
+  <p class="lead" style="margin-top:18px"><strong>곁들이면 좋은 것</strong> — 찍어먹는 크림 스프 · 단호박 스프 각 4,800원(바삭한 바게트 2조각이 함께 나옵니다) · 샌드위치+스프+음료 세트</p>
+  <p class="muted">가격은 잠실점 네이버 주문(결제메뉴) 기준, 2026년 9월 조회. 배달 가격은 다릅니다. 전체 메뉴는 네이버 플레이스 메뉴에서 확인해 주세요.</p>
 </section>
 
 <!-- 4. 커피 -->
