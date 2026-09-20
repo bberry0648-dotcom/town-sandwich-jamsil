@@ -11,6 +11,7 @@
 <meta property="og:locale" content="ko_KR">
 <!-- og:image 는 실제 매장 사진이 생기면 넣는다. 없는 이미지를 지어내지 않는다. -->
 <link rel="preload" href="gmarket-medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="logo.png" as="image">
 <style>
 /* 브랜드 토큰 — ../group-order-app/style.css 와 같은 값. 두 페이지는 같은 옷을 입는다. */
 @font-face{font-family:'GmarketSans';src:url('gmarket-medium.woff2') format('woff2');font-weight:500;font-display:swap}
@@ -49,7 +50,6 @@ h2{font-size:24px;margin-bottom:14px}
 
 /* 히어로 */
 .hero{padding:36px 0 40px}
-.hero .brand{font-size:14px;font-weight:700;color:var(--green);margin-bottom:18px}
 .hero h1{font-size:32px;margin-bottom:14px}
 .hero .lead{font-size:16px}
 .hero .where{margin-top:10px;font-size:14px;color:var(--gray)}
@@ -79,6 +79,23 @@ h2{font-size:24px;margin-bottom:14px}
 .info dd{margin:0}
 .info .card+.card{margin-top:12px}
 
+/* 상단 고정 바 — 로고 · 섹션 바로가기 · 단체주문.
+   필 기하는 00-system/DESIGN.md 의 compact(36px · 980px · 8px 15px · 14px). hover·모션은 정의하지 않는다. */
+.topbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:10px;height:56px}
+.topbar .logo{flex:none;display:flex;align-items:center;gap:6px;text-decoration:none}
+.topbar .logo img{display:block;height:30px;width:auto}
+.topbar .logo span{font-size:12px;font-weight:700;color:var(--gray)}
+.topnav{flex:1;min-width:0;display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;justify-content:center;justify-content:safe center}
+.topnav::-webkit-scrollbar{display:none}
+.topnav a{flex:none;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap}
+.topcta{flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:8px 15px;border-radius:980px;background:var(--green);border:1px solid var(--green);color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
+section{scroll-margin-top:68px}
+@media(max-width:767px){.topbar .wrap{height:52px;padding:0 16px;gap:8px}
+  .topbar .logo img{height:27px}.topnav{gap:13px}.topnav a{font-size:13.5px}
+  /* 단체주문은 하단 고정 바에 이미 있다 — 좁은 화면에서 두 번 넣지 않는다 */
+  .topcta{display:none}section{scroll-margin-top:60px}}
+
 /* 푸터 */
 footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid var(--line)}
 
@@ -91,11 +108,27 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 </head>
 <body>
 
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <img src="logo.png" alt="타운샌드위치" width="419" height="235">
+      <span>잠실점</span>
+    </a>
+    <nav class="topnav" aria-label="섹션 바로가기">
+      <a href="#bread">빵</a>
+      <a href="#menu">메뉴</a>
+      <a href="#coffee">커피</a>
+      <a href="#visit">매장</a>
+      <a href="#info">위치</a>
+    </nav>
+    <a class="topcta" href="#group">단체주문</a>
+  </div>
+</header>
+
 <main class="wrap">
 
 <!-- 1. 히어로 -->
-<section class="hero">
-  <p class="brand">타운샌드위치 잠실점</p>
+<section class="hero" id="top">
   <h1>빵이 다르면<br>샌드위치도 다릅니다.</h1>
   <p class="lead">HACCP 인증 베이커리와 함께 타운샌드위치만을 위해 개발한 전용 바게트로 만듭니다.</p>
   <p class="where">잠실 더샵스타파크 상가 1층 · 매일 09:00–20:00</p>
