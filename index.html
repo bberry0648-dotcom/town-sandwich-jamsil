@@ -71,8 +71,14 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 
 /* 메뉴 카드 — 사진이 먼저, 설명이 다음. 한 줄에 2개(좁은 화면에서도 2개로 유지) */
 .subhead{margin:30px 0 0;font-size:16.5px;font-weight:700;color:var(--green-deep)}
-/* 설명이 들어가므로 어느 폭에서나 2열 — 3열이면 한 칸 165px 이라 설명이 13글자마다 끊긴다 */
+/* 기본 2열. 본문 폭(560px) 안에서 3열로 쪼개면 한 칸 165px 이라 설명이 13글자마다 끊긴다.
+   그래서 화면이 넉넉할 때만 격자를 본문 밖으로 넓혀 3열로 간다 — 한 칸 280px 로 2열일 때(254px)보다 오히려 넓다. */
 .menugrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(min-width:940px){
+  /* 격자만 넓히면 제목과 왼쪽 끝이 어긋난다 — 메뉴 섹션을 통째로 넓혀 제목·격자를 같은 선에 둔다 */
+  #menu{width:min(880px,calc(100vw - 40px)); margin-left:50%; transform:translateX(-50%)}
+  .menugrid{grid-template-columns:repeat(3,1fr);gap:14px}
+}
 .mcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   overflow:hidden;display:flex;flex-direction:column}
 .mshot{flex:none;aspect-ratio:4/3;width:100%;height:auto;display:block;object-fit:cover;
