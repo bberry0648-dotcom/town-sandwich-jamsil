@@ -95,9 +95,20 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 .list li{padding:8px 0 8px 22px;position:relative;font-size:15px}
 .list li::before{content:"";position:absolute;left:4px;top:16px;width:7px;height:7px;border-radius:50%;background:var(--mustard)}
 .list.no li::before{background:var(--gray)}
+/* 「빵」의 두 칸 — 안에 든 것이 .card 라 상자 높이는 격자 stretch 로 저절로 맞는다. */
 .two{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:520px){.two{grid-template-columns:1fr 1fr}}
-.two h3{font-size:14px;color:var(--gray);margin-bottom:4px}
+.two h3{margin-bottom:4px}
+/* .card+.card{margin-top:12px} 가 격자 안에서도 먹어 두 상자의 윗선이 12px 어긋났다 — 간격은 격자 gap 이 낸다. */
+.two .card+.card{margin-top:0}
+
+/* 「빵」 리드 3문단 — 대표님이 준 줄바꿈을 그대로 살린 연(聯) 형태라 폭에 상관없이 가운데로 둔다.
+   <br> 는 받은 줄 나눔이고, 칸이 좁으면 그 안에서 한 번 더 접힌다(넘치지는 않는다). */
+/* 머리(눈썹·제목)도 같이 가운데로 둔다 — 본문만 가운데면 768px 이상에서 제목만 왼쪽에 남아 어긋나 보인다.
+   상자 속 글은 건드리지 않는다(아래 .card 는 왼쪽 정렬 유지). */
+#bread>.eyebrow,#bread>h2{text-align:center}
+.stanza{text-align:center;margin-bottom:14px}
+.stanza:last-of-type{margin-bottom:20px}
 
 
 /* 매장 정보 */
@@ -130,6 +141,8 @@ section{scroll-margin-top:68px}
   .two h3{text-align:center}
   .list{display:inline-block;text-align:left}
   .mtxt,.card,.info dl,.quote{text-align:left}
+  /* 상자 안에서는 목록을 inline-block 으로 가운데 놓지 않는다 — 상자마다 폭이 달라 왼쪽 끝이 어긋난다(2026-09-21). */
+  .card .list{display:block}
   .info dl{display:inline-grid;text-align:left}
 }
 
@@ -181,11 +194,12 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 <section id="bread">
   <p class="eyebrow">바게트</p>
   <h2>맛있는 샌드위치의 시작, 바게트부터</h2>
-  <p class="lead">한입 베어 물었을 때의 바삭함부터 재료와 어우러지는 마지막 한입까지.</p>
-  <p class="lead">타운샌드위치는 샌드위치의 맛을 완성하는 바게트의 식감을 중요하게 생각합니다.
-     겉은 바삭하고 속은 촉촉하게, 질기지 않아 편하게 즐길 수 있는 바게트에 재료의 맛을 조화롭게 담았습니다.</p>
+  <!-- 대표님이 준 문안. 문장뿐 아니라 줄바꿈 위치·문단 나눔도 받은 그대로다(2026-09-21 스크린샷). -->
+  <p class="lead stanza">한입 베어 물었을 때의 바삭함부터<br>재료와 어우러지는 마지막 한입까지.</p>
+  <p class="lead stanza">타운샌드위치는<br>샌드위치의 맛을 완성하는 바게트의 식감을 중요하게 생각합니다.</p>
+  <p class="lead stanza">겉은 바삭하고 속은 촉촉하게,<br>질기지 않아 편하게 즐길 수 있는<br>바게트에 재료의 맛을 조화롭게 담았습니다.</p>
   <div class="two">
-    <div>
+    <div class="card">
       <h3>한입에 느껴지는 차이</h3>
       <ul class="list">
         <li>기분 좋게 씹히는 바삭한 겉면</li>
@@ -193,7 +207,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
         <li>질기지 않아 먹기 편한 바게트</li>
       </ul>
     </div>
-    <div>
+    <div class="card">
       <h3>함께 먹을 때 더 맛있도록</h3>
       <ul class="list">
         <li>빵의 맛과 식감은 살리고, 속재료의 풍미는 자연스럽게 어우러지도록</li>
