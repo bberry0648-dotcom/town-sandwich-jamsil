@@ -93,6 +93,10 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 }
 .mcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   overflow:hidden;display:flex;flex-direction:column}
+/* 음료 사진만 세로 3:4 — 잔이 세로로 길어 4:3 에 넣으면 위아래가 잘린다.
+   두 장 다 「잔의 bbox 기준 가운데 크롭 → 높이 560 → 480x640 흰 여백 패딩」으로 구워
+   프레이밍이 달랐던 원본(아메리카노는 잔이 꽉 참 / 라떼는 여백이 큼)에서도 잔 크기가 같게 나온다. */
+.mshot.dshot{aspect-ratio:3/4}
 .mshot{flex:none;aspect-ratio:4/3;width:100%;height:auto;display:block;object-fit:cover;
   background:var(--cream-2);border-bottom:1px solid var(--line)}
 .mtxt{flex:1;padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px}
@@ -385,21 +389,26 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <!-- 음료 타일 — 메뉴 섹션과 같은 .menugrid/.mcard 를 쓴다(설명 없이 이름·가격만).
        이름·가격의 근거는 naver-order-menu.json (2026-09-21 조회) 의 음료 11종, 가격 오름차순.
        사진이 오면 각 .mtxt 위에 <img class="mshot" ... width="480" height="360"> 한 줄씩 넣으면 된다. -->
+  <!-- 음료 타일 — 메뉴 섹션과 같은 .menugrid/.mcard.
+       이름·가격의 근거는 naver-order-menu.json (2026-09-21 조회) 의 음료 11종.
+       첫 줄 2칸(아메리카노·카페 라떼)만 사진이 있다(대표님이 이 둘만 찍었다). 나머지는 이름·가격만 — 가격 오름차순. -->
   <h3 class="subhead">음료</h3>
   <div class="menugrid">
     <article class="mcard">
+      <img class="mshot dshot" src="photos/drink-americano.jpg" alt="아메리카노" width="480" height="640">
       <div class="mtxt">
         <h3>아메리카노<span class="price">2,900원</span></h3>
       </div>
     </article>
     <article class="mcard">
+      <img class="mshot dshot" src="photos/drink-latte.jpg" alt="카페 라떼" width="480" height="640">
       <div class="mtxt">
-        <h3>아샷추 (ICE ONLY)<span class="price">3,400원</span></h3>
+        <h3>카페 라떼<span class="price">3,900원</span></h3>
       </div>
     </article>
     <article class="mcard">
       <div class="mtxt">
-        <h3>카페 라떼<span class="price">3,900원</span></h3>
+        <h3>아샷추 (ICE ONLY)<span class="price">3,400원</span></h3>
       </div>
     </article>
     <article class="mcard">
@@ -443,6 +452,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
       </div>
     </article>
   </div>
+
 </section>
 
 <!-- 5. 매장 이용 -->
