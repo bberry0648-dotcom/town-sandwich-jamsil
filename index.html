@@ -75,6 +75,7 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 
 /* 메뉴 카드 — 사진이 먼저, 설명이 다음. 한 줄에 2개(좁은 화면에서도 2개로 유지) */
 .subhead{margin:30px 0 0;font-size:16.5px;font-weight:700;color:var(--green-deep)}
+.subhead+.stanza{margin-top:8px}
 /* 기본 2열. 본문 폭(560px) 안에서 3열로 쪼개면 한 칸 165px 이라 설명이 13글자마다 끊긴다.
    그래서 화면이 넉넉할 때만 격자를 본문 밖으로 넓혀 3열로 간다 — 한 칸 280px 로 2열일 때(254px)보다 오히려 넓다. */
 .menugrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
@@ -121,7 +122,13 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
    <br> 는 받은 줄 나눔이고, 칸이 좁으면 그 안에서 한 번 더 접힌다(넘치지는 않는다). */
 /* 머리(눈썹·제목)도 같이 가운데로 둔다 — 본문만 가운데면 768px 이상에서 제목만 왼쪽에 남아 어긋나 보인다.
    상자 속 글은 건드리지 않는다(아래 .card 는 왼쪽 정렬 유지). */
-#bread>.eyebrow,#bread>h2{text-align:center}
+#bread>.eyebrow,#bread>h2,#coffee>.eyebrow,#coffee>h2{text-align:center}
+/* 문장형 소제목만 가운데. 「음료」처럼 격자 위에 붙는 분류 라벨(.subhead)은 격자와 같이 왼쪽에 둔다. */
+.subhead.mid{text-align:center}
+/* 타운블렌드 마크 판 — 로고 아트워크가 흰색이라 딥그린 위에 올려야 보인다. 그림 자체는 손대지 않는다. */
+.markplate{background:var(--green-deep);border-radius:var(--radius);padding:26px 20px;margin:0 0 20px;
+  display:flex;align-items:center;justify-content:center}
+.markplate img{display:block;width:200px;max-width:60%;height:auto}
 .stanza{text-align:center;margin-bottom:14px}
 .stanza:last-of-type{margin-bottom:20px}
 
@@ -347,13 +354,21 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 <!-- 4. 커피 -->
 <section id="coffee">
   <p class="eyebrow">커피</p>
-  <h2>커피도 직접 블렌딩했습니다</h2>
-  <p class="lead">여러 원두와 배합을 테스트해서 골랐습니다. 기준은 세 가지였습니다.</p>
+  <!-- 타운블렌드 마크. 아트워크가 흰색(평균 RGB 247,247,247)이라 크림 바탕에 그냥 얹으면 안 보인다.
+       받은 그림을 고치지 않고 보이게 하려고 딥그린 판을 깔았다. 자세한 사정은 CLAUDE.md. -->
+  <div class="markplate">
+    <img src="photos/town-blend.png" alt="TOWN BLENDING from GRAY GRISTMILL" width="470" height="520">
+  </div>
+
+  <h2>커피에도 타운만의 기준을 담았습니다</h2>
+  <!-- 대표님이 준 문안(2026-09-21). 문장도 줄바꿈도 받은 그대로 — 「빵」 섹션과 같은 규칙. -->
+  <p class="lead stanza">그레이 그리스트밀과 함께 만든 ‘타운블렌드’.<br>깊고 묵직한 다크초콜릿의 풍미와<br>고소한 구운 아몬드의 노트를 담았습니다.</p>
   <ul class="list">
-    <li>샌드위치의 풍미를 해치지 않을 것</li>
-    <li>입안을 깔끔하게 정리해 줄 것</li>
-    <li>브런치나 간단한 식사와 자연스럽게 어울릴 것</li>
+    <li>일정한 맛을 위해, AI 기반으로 샷 추출을 조정하는 카예 머신을 사용합니다.</li>
+    <li>디카페인 변경으로, 취향에 맞게 커피를 즐길 수 있습니다.</li>
+    <li>우유 대신 오트밀크로, 선택의 폭을 더했습니다.</li>
   </ul>
+
   <div class="card" style="margin-top:16px">
     <h3>아그작 아메리카노</h3>
     <p>아메리카노 아래에 원당을 깔아, 빨대로 마실 때마다 아그작 씹히는 타운만의 커피. 라떼로도 있습니다.</p>
