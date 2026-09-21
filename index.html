@@ -101,6 +101,13 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 .two h3{margin-bottom:4px}
 /* .card+.card{margin-top:12px} 가 격자 안에서도 먹어 두 상자의 윗선이 12px 어긋났다 — 간격은 격자 gap 이 낸다. */
 .two .card+.card{margin-top:0}
+/* 상자 안쪽도 가운데로 둔다(2026-09-21 지시) — 섹션 전체가 가운데 정렬이라 상자만 왼쪽이면 튄다.
+   목록은 글자까지 가운데로 보내지 않고 **덩어리째** 가운데에 놓는다(inline-block) —
+   불릿 점이 li 왼쪽에 절대 배치돼 있어서, 글만 가운데로 밀면 여러 줄짜리 항목에서 점과 글이 떨어진다. */
+.two .card{text-align:center}
+.two .card .list{display:inline-block;text-align:left}
+/* .card h3 는 display:flex 라 text-align 이 안 먹는다 — 가운데는 justify-content 로 맞춘다. */
+.two .card h3{justify-content:center}
 
 /* 「빵」 리드 3문단 — 대표님이 준 줄바꿈을 그대로 살린 연(聯) 형태라 폭에 상관없이 가운데로 둔다.
    <br> 는 받은 줄 나눔이고, 칸이 좁으면 그 안에서 한 번 더 접힌다(넘치지는 않는다). */
@@ -435,6 +442,37 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   }],
   "sameAs": ["https://www.instagram.com/town_sandwich", "https://map.naver.com/p/entry/place/1866142117"]
 }
+</script>
+<!-- 다시 열면 맨 위에서 시작하게 하는 최소 스크립트 (2026-09-21).
+     원인: 모바일 하단 고정 바의 「단체주문」을 누르면 주소에 #group 이 남고, 그 주소로 탭·북마크가 저장돼
+     다시 열 때마다 단체주문 화면에서 시작했다. 아래 세 가지로 막는다.
+     ① 브라우저 스크롤 복원 끄기 ② 페이지 안 앵커 이동은 주소에 # 를 남기지 않기 ③ 이미 저장된 # 는 열 때 지우고 맨 위로.
+     모션은 정의하지 않은 값이라 부드러운 스크롤을 쓰지 않는다(DESIGN.md). 섹션의 scroll-margin-top 은 scrollIntoView 가 알아서 지킨다. -->
+<script>
+(function(){
+  var hadHash = !!location.hash;           // 열 때 주소에 # 가 있었나 (저장된 주소)
+  try{ if('scrollRestoration' in history) history.scrollRestoration='manual'; }catch(e){}
+
+  // 페이지 안 앵커 이동은 주소에 # 를 남기지 않는다 — 이게 원인이었다
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if(!id) return;
+    var el = document.getElementById(id);
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView();
+  });
+
+  // 이미 저장된 주소에 # 가 남아 있으면 지우고 맨 위로.
+  // 브라우저가 앵커로 뛰는 시점이 제각각이라(파싱 중·load 후) 두 번 맞춘다.
+  if(hadHash){
+    try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+    window.scrollTo(0,0);
+    window.addEventListener('load', function(){ window.scrollTo(0,0); }, {once:true});
+  }
+})();
 </script>
 </body>
 </html>
