@@ -45,8 +45,9 @@ h2{font-size:24px;margin-bottom:14px}
 .photo{background:var(--cream-2);border:1px dashed var(--line);border-radius:var(--radius);aspect-ratio:4/3;max-width:100%;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:13px;text-align:center;padding:16px}
 .photo.wide{aspect-ratio:16/10}
 /* 실제 사진이 들어간 자리. object-fit:cover 라 비율은 그대로고 프레임 밖만 잘린다.
-   hero 는 세로 A3 포스터(2526×3573) — 위 34%가 빈 여백이라 object-position 으로 제품에 맞춰 내렸다. */
-img.photo{display:block;border:0;padding:0;width:100%;height:auto;object-fit:cover;background:var(--cream-2)}
+   hero 는 세로 A3 포스터(2526×3573) — 위 34%가 빈 여백이라 object-position 으로 제품에 맞춰 내렸다.
+   사진 배경은 원본 rgb(243,239,230) 에서 페이지 --cream 으로 옮겨 칠했다(제품·그림자는 그대로). 사진을 갈아끼우면 이 작업을 다시 해야 이음매가 안 보인다. */
+img.photo{display:block;border:0;padding:0;width:100%;height:auto;object-fit:cover;background:var(--cream)}
 img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 
 /* 버튼 — 980px 필, 44px (00-system/DESIGN.md 기하). 색은 브랜드 토큰. hover 는 정의하지 않는다. */
