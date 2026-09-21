@@ -70,6 +70,7 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 .card p{font-size:15px}
 
 /* 메뉴 카드 — 사진이 먼저, 설명이 다음. 한 줄에 2개(좁은 화면에서도 2개로 유지) */
+.subhead{margin:30px 0 0;font-size:16.5px;font-weight:700;color:var(--green-deep)}
 .menugrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
 .mcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   overflow:hidden;display:flex;flex-direction:column}
@@ -93,7 +94,6 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 @media(min-width:520px){.two{grid-template-columns:1fr 1fr}}
 .two h3{font-size:14px;color:var(--gray);margin-bottom:4px}
 
-.quote{border-left:3px solid var(--mustard);padding:6px 0 6px 14px;margin:18px 0;font-size:16px;color:var(--green-deep)}
 
 /* 매장 정보 */
 .info dl{margin:0;display:grid;grid-template-columns:64px 1fr;gap:8px 12px;font-size:15px}
@@ -183,7 +183,6 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
       </ul>
     </div>
   </div>
-  <p class="quote">바삭한 빵과 어우러지는 재료로 한 끼의 만족을 담은 타운샌드위치.</p>
 </section>
 
 <!-- 3. 뭘 시킬까 -->
@@ -221,8 +220,22 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     </article>
   </div>
 
-  <p class="lead" style="margin-top:18px"><strong>곁들이면 좋은 것</strong> — 찍어먹는 크림 스프 · 단호박 스프 각 4,800원(바삭한 바게트 2조각이 함께 나옵니다) · 샌드위치+스프+음료 세트</p>
-  <p class="muted">가격은 잠실점 네이버 주문(결제메뉴) 기준, 2026년 9월 조회. 배달 가격은 다릅니다. 전체 메뉴는 네이버 플레이스 메뉴에서 확인해 주세요.</p>
+  <h3 class="subhead">곁들이면 좋은 것</h3>
+  <div class="menugrid">
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>찍어먹는 크림 스프<span class="price">4,800원</span></h3>
+        <p>타운샌드위치만의 따뜻하고 고소한 크림 스프와 함께 먹는 바삭한 바게트 2조각.</p>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>찍어먹는 단호박 스프<span class="price">4,800원</span></h3>
+        <p>타운샌드위치만의 따뜻하고 고소한 단호박 스프와 함께 먹는 바삭한 바게트 2조각.</p>
+      </div>
+    </article>
+  </div>
+  <p class="muted" style="margin-top:12px">샌드위치 + 스프 + 음료 세트로도 주문할 수 있습니다.</p>
 </section>
 
 <!-- 4. 커피 -->
