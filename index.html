@@ -127,6 +127,17 @@ section{scroll-margin-top:68px}
   /* 단체주문은 하단 고정 바에 이미 있다 — 좁은 화면에서 두 번 넣지 않는다 */
   .topcta{display:none}section{scroll-margin-top:60px}}
 
+/* 모바일 — 섹션 글을 가운데로 (2026-09-21 지시).
+   목록·카드 속 글까지 가운데로 보내면 불릿 점과 글이 어긋나고 문장이 들쭉날쭉해진다.
+   그래서 제목·설명 문단만 가운데로 두고, 읽는 덩어리는 왼쪽 정렬을 유지한 채 가운데에 놓는다. */
+@media(max-width:767px){
+  section{text-align:center}
+  .two h3{text-align:center}
+  .list{display:inline-block;text-align:left}
+  .mtxt,.card,.info dl,.quote{text-align:left}
+  .info dl{display:inline-grid;text-align:left}
+}
+
 /* 푸터 */
 footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid var(--line)}
 
