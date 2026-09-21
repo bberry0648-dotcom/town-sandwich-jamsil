@@ -131,9 +131,20 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
    <br> 는 받은 줄 나눔이고, 칸이 좁으면 그 안에서 한 번 더 접힌다(넘치지는 않는다). */
 /* 머리(눈썹·제목)도 같이 가운데로 둔다 — 본문만 가운데면 768px 이상에서 제목만 왼쪽에 남아 어긋나 보인다.
    상자 속 글은 건드리지 않는다(아래 .card 는 왼쪽 정렬 유지). */
-#bread>.eyebrow,#bread>h2,#coffee>.eyebrow,#coffee>h2{text-align:center}
+#bread>.eyebrow,#bread>h2,#coffee>.eyebrow,#coffee>h2,#visit>.eyebrow,#visit>h2{text-align:center}
 /* 문장형 소제목만 가운데. 「음료」처럼 격자 위에 붙는 분류 라벨(.subhead)은 격자와 같이 왼쪽에 둔다. */
 .subhead.mid{text-align:center}
+/* 매장 내부 사진 띠 — 좌우로 미는 형태. CSS scroll-snap 만 쓰고 JS 슬라이더는 두지 않았다.
+   다음 장이 살짝 보이도록 폭을 78% 로 잡아, 화살표·점 없이도 옆으로 밀 수 있다는 걸 알린다.
+   좌우 -20px 마진으로 본문 여백 밖까지 흘려 화면 끝에서 끝으로 미끄러지게 했다(스크롤바는 감춤). */
+/* align-items 기본값 stretch 가 <img> 를 세로로 늘려 aspect-ratio 를 무시한다 — start 로 막는다. */
+.shots{display:flex;align-items:start;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;overscroll-behavior-x:contain;
+  margin:0 -20px 20px;padding:0 20px;scroll-padding-left:20px}
+.shots::-webkit-scrollbar{display:none}
+.shots img{flex:0 0 auto;width:min(78%,300px);height:auto;aspect-ratio:3/4;object-fit:cover;display:block;
+  border-radius:var(--radius);background:var(--cream-2);scroll-snap-align:start}
+
 /* 타운블렌드 마크 판 — 로고 아트워크가 흰색이라 딥그린 위에 올려야 보인다. 그림 자체는 손대지 않는다. */
 .markplate{background:var(--green-deep);border-radius:var(--radius);padding:26px 20px;margin:0 0 20px;
   display:flex;align-items:center;justify-content:center}
@@ -458,13 +469,24 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 <!-- 5. 매장 이용 -->
 <section id="visit">
   <p class="eyebrow">매장</p>
-  <h2>혼자 와도, 여럿이 와도</h2>
-  <ul class="list">
-    <li>혼자 와서 먹기 편한 매장입니다</li>
-    <li>포장 · 예약 · 배달 모두 됩니다</li>
-    <li>주차: 더샵스타파크 지하주차장, 평일 1시간 · 주말 2시간 무료</li>
-    <li>남/녀 화장실 구분</li>
-  </ul>
+  <!-- 매장 내부 3장. 한 화면에 다 넣을 수 없어 좌우로 미는 띠로 뒀다(2026-09-21 지시).
+       CSS scroll-snap 만 쓴다 — JS 슬라이더·화살표·점은 넣지 않았다. -->
+  <div class="shots" role="region" aria-label="매장 내부 사진 3장 — 좌우로 밀어서 보기" tabindex="0">
+    <img src="photos/store-1.jpg" alt="매장 안 셀프바와 벽에 붙은 타운샌드위치 사인" width="540" height="720">
+    <img src="photos/store-2.jpg" alt="메뉴 그림이 붙은 나무 벽과 창가 바 좌석" width="540" height="720">
+    <img src="photos/store-3.jpg" alt="주문 카운터와 테이블 좌석" width="540" height="720">
+  </div>
+
+  <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
+  <h2>샌드위치 한 끼, 커피 한 잔의 여유</h2>
+  <p class="lead stanza">혼자서도, 함께여도 편안하게.<br>타운샌드위치에서 맛있는 식사 시간을 즐겨보세요.</p>
+  <div class="card">
+    <ul class="list">
+      <li>매장 식사 · 포장 · 예약 · 배달 가능</li>
+      <li>더샵스타파크 지하주차장 이용<br>평일 1시간 · 주말 2시간 무료</li>
+      <li>남녀 구분 화장실</li>
+    </ul>
+  </div>
 </section>
 
 <!-- 6. 단체주문 -->
