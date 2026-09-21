@@ -201,18 +201,14 @@ p,li,dd{text-wrap:pretty}
 .topnav{flex:1;min-width:0;display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;justify-content:center;justify-content:safe center}
 .topnav::-webkit-scrollbar{display:none}
 .topnav a{flex:none;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap}
-/* 단체주문 바로가기 — 글자 링크 사이에서 눈에 띄도록 초록 동그라미로 둔다(기하는 .topcta 와 같은 980px 필). */
-.navcta{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
-  border-radius:980px;background:var(--green);color:#fff;margin-right:2px}
-.navcta svg{display:block}
-/* 768px 이상에서는 오른쪽에 「단체주문」 필(.topcta)이 나오므로 아이콘은 감춘다 — 한 바에 두 번 넣지 않는다. */
-@media(min-width:768px){.navcta{display:none}}
 .topcta{flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:8px 15px;border-radius:980px;background:var(--green);border:1px solid var(--green);color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
 section{scroll-margin-top:68px}
-@media(max-width:767px){.topbar .wrap{height:52px;padding:0 16px;gap:8px}
-  .topbar .logo img{height:27px}.topnav{gap:13px}.topnav a{font-size:13.5px}
-  /* 단체주문은 하단 고정 바에 이미 있다 — 좁은 화면에서 두 번 넣지 않는다 */
-  .topcta{display:none}section{scroll-margin-top:60px}}
+@media(max-width:767px){.topbar .wrap{height:52px;padding:0 12px;gap:7px}
+  .topbar .logo img{height:25px}.topnav{gap:12px}.topnav a{font-size:13.5px}
+  /* 「단체주문」은 좁은 화면에서도 보인다(2026-09-21 지시) — 하단 바에 있어도 상단만 보는 사람에겐 통로가 없었다.
+     자리를 만들려고 필을 작게 줄인다. 그래도 모자라면 가운데 .topnav 가 가로로 스크롤된다(로고·필은 안 밀린다). */
+  .topcta{height:32px;padding:7px 12px;font-size:13px}
+  section{scroll-margin-top:60px}}
 
 /* 모바일 — 섹션 글을 가운데로 (2026-09-21 지시).
    목록·카드 속 글까지 가운데로 보내면 불릿 점과 글이 어긋나고 문장이 들쭉날쭉해진다.
@@ -245,14 +241,6 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
       <img src="logo.png" alt="타운샌드위치 잠실점" width="419" height="235">
     </a>
     <nav class="topnav" aria-label="섹션 바로가기">
-      <!-- 좁은 화면에서는 오른쪽 「단체주문」 필이 숨겨져 상단에서 단체주문으로 갈 길이 없었다(2026-09-21 지적).
-           바게트 왼쪽에 강조 아이콘 하나를 둔다. 아이콘만 있는 버튼이라 aria-label·title 로 이름을 붙인다. -->
-      <a class="navcta" href="#group" aria-label="단체주문 안내로 이동" title="단체주문">
-        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-          <circle cx="9" cy="8.2" r="3.1"/><path d="M2.9 19.4a6.1 6.1 0 0 1 12.2 0"/>
-          <path d="M16.4 5.5a3.1 3.1 0 0 1 0 5.9M17.6 14.1a6.1 6.1 0 0 1 3.5 5.3"/>
-        </svg>
-      </a>
       <a href="#bread">바게트</a>
       <a href="#menu">메뉴</a>
       <a href="#coffee">커피</a>
