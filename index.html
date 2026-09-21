@@ -201,6 +201,12 @@ p,li,dd{text-wrap:pretty}
 .topnav{flex:1;min-width:0;display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;justify-content:center;justify-content:safe center}
 .topnav::-webkit-scrollbar{display:none}
 .topnav a{flex:none;font-size:14px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap}
+/* 단체주문 바로가기 — 글자 링크 사이에서 눈에 띄도록 초록 동그라미로 둔다(기하는 .topcta 와 같은 980px 필). */
+.navcta{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
+  border-radius:980px;background:var(--green);color:#fff;margin-right:2px}
+.navcta svg{display:block}
+/* 768px 이상에서는 오른쪽에 「단체주문」 필(.topcta)이 나오므로 아이콘은 감춘다 — 한 바에 두 번 넣지 않는다. */
+@media(min-width:768px){.navcta{display:none}}
 .topcta{flex:none;display:inline-flex;align-items:center;justify-content:center;height:36px;padding:8px 15px;border-radius:980px;background:var(--green);border:1px solid var(--green);color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
 section{scroll-margin-top:68px}
 @media(max-width:767px){.topbar .wrap{height:52px;padding:0 16px;gap:8px}
@@ -239,6 +245,14 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
       <img src="logo.png" alt="타운샌드위치 잠실점" width="419" height="235">
     </a>
     <nav class="topnav" aria-label="섹션 바로가기">
+      <!-- 좁은 화면에서는 오른쪽 「단체주문」 필이 숨겨져 상단에서 단체주문으로 갈 길이 없었다(2026-09-21 지적).
+           바게트 왼쪽에 강조 아이콘 하나를 둔다. 아이콘만 있는 버튼이라 aria-label·title 로 이름을 붙인다. -->
+      <a class="navcta" href="#group" aria-label="단체주문 안내로 이동" title="단체주문">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="9" cy="8.2" r="3.1"/><path d="M2.9 19.4a6.1 6.1 0 0 1 12.2 0"/>
+          <path d="M16.4 5.5a3.1 3.1 0 0 1 0 5.9M17.6 14.1a6.1 6.1 0 0 1 3.5 5.3"/>
+        </svg>
+      </a>
       <a href="#bread">바게트</a>
       <a href="#menu">메뉴</a>
       <a href="#coffee">커피</a>
@@ -423,11 +437,10 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <p class="eyebrow">커피</p>
   <!-- 타운블렌드 마크. 아트워크가 흰색(평균 RGB 247,247,247)이라 크림 바탕에 그냥 얹으면 안 보인다.
        받은 그림을 고치지 않고 보이게 하려고 딥그린 판을 깔았다. 자세한 사정은 CLAUDE.md. -->
+  <h2>커피에도 타운만의 기준을 담았습니다</h2>
   <div class="markplate">
     <img src="photos/town-blend.png" alt="TOWN BLENDING from GRAY GRISTMILL" width="470" height="520">
   </div>
-
-  <h2>커피에도 타운만의 기준을 담았습니다</h2>
   <!-- 대표님이 준 문안(2026-09-21). 문장도 줄바꿈도 받은 그대로 — 「빵」 섹션과 같은 규칙. -->
   <p class="lead stanza">그레이 그리스트밀과 함께 만든 ‘타운블렌드’<br>깊고 묵직한 다크초콜릿의 풍미와<br>고소한 구운 아몬드의 노트를 담았습니다.</p>
   <div class="card">
@@ -518,14 +531,15 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <p class="eyebrow">매장</p>
   <!-- 매장 내부 3장. 한 화면에 다 넣을 수 없어 좌우로 미는 띠로 뒀다(2026-09-21 지시).
        CSS scroll-snap 만 쓴다 — JS 슬라이더·화살표·점은 넣지 않았다. -->
+
+
+  <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
+  <h2>샌드위치 한 끼, 커피 한 잔의 여유</h2>
   <div class="shots" role="region" aria-label="매장 내부 사진 3장 — 좌우로 밀어서 보기" tabindex="0">
     <img src="photos/store-3.jpg" alt="주문 카운터와 테이블 좌석" width="540" height="720">
     <img src="photos/store-2.jpg" alt="메뉴 그림이 붙은 나무 벽과 창가 바 좌석" width="540" height="720">
     <img src="photos/store-1.jpg" alt="매장 안 셀프바와 벽에 붙은 타운샌드위치 사인" width="540" height="720">
   </div>
-
-  <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
-  <h2>샌드위치 한 끼, 커피 한 잔의 여유</h2>
   <p class="lead stanza">혼자서도, 함께여도 편안하게.<br>타운샌드위치에서 맛있는 식사 시간을 즐겨보세요.</p>
   <div class="card">
     <ul class="list">
@@ -540,10 +554,9 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <p class="eyebrow">단체주문</p>
   <!-- 포장 완료된 단체주문 사진. 원본은 세로 3:4(아이폰 HEIC, EXIF 회전) —
        4:3 틀에 object-position 61% 로 앉혀 쌓인 상자 더미가 프레임 한가운데 오게 했다. -->
-  <img class="photo grouponshot" src="photos/group.jpg" alt="포장 상자에 담겨 테이블에 쌓인 단체주문 샌드위치" width="750" height="1000">
-
   <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
   <h2>함께 먹는 자리에도, 타운샌드위치</h2>
+  <img class="photo grouponshot" src="photos/group.jpg" alt="포장 상자에 담겨 테이블에 쌓인 단체주문 샌드위치" width="750" height="1000">
   <p class="lead stanza">회사 회의부터 학교·학원 행사, 촬영 현장과 각종 모임까지.<br>함께 즐길 샌드위치와 음료를 타운에서 준비해 보세요.</p>
   <div class="card">
     <ul class="list">
