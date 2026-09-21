@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TOWN SANDWICH 타운샌드위치</title>
-<meta name="description" content="HACCP 인증 베이커리와 함께 개발한 전용 바게트로 만드는 샌드위치. 잠실 더샵스타파크 상가 1층, 매일 09:00–20:00. 단체주문 상담 가능.">
+<meta name="description" content="겉은 바삭하고 속은 촉촉한, 질기지 않은 바게트. 주문과 동시에 만드는 샌드위치. 잠실 더샵스타파크 상가 1층, 매일 09:00–20:00. 단체주문 상담 가능.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TOWN SANDWICH 타운샌드위치">
 <meta property="og:description" content="빵이 다르면 샌드위치도 다릅니다. 전용 바게트 · 자체 블렌딩 커피 · 단체주문 상담.">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/photos/hero.jpg">
 <meta property="og:image:alt" content="타운샌드위치 세트 — 샌드위치와 아이스 아메리카노">
-<!-- 매장·메뉴 실사가 더 생기면 photos/README.md 의 나머지 4곳도 같은 방식으로 채운다. -->
+<!-- 빈 사진 자리는 없다(2026-09-21). 새 실사를 넣는 법은 photos/README.md. -->
 <link rel="preload" href="gmarket-medium.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="logo.png" as="image">
 <style>
@@ -41,13 +41,10 @@ h2{font-size:24px;margin-bottom:14px}
 .lead{font-size:16px;margin-bottom:16px}
 .muted{color:var(--gray);font-size:14px}
 
-/* 사진 자리 — 실제 사진이 들어오면 <img> 로 교체 (photos/README.md) */
-.photo{background:var(--cream-2);border:1px dashed var(--line);border-radius:var(--radius);aspect-ratio:4/3;max-width:100%;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:13px;text-align:center;padding:16px}
-.photo.wide{aspect-ratio:16/10}
 /* 실제 사진이 들어간 자리. object-fit:cover 라 비율은 그대로고 프레임 밖만 잘린다.
    hero 는 세로 A3 포스터(2526×3573) — 위 34%가 빈 여백이라 object-position 으로 제품에 맞춰 내렸다.
    사진 배경은 원본 rgb(243,239,230) 에서 페이지 --cream 으로 옮겨 칠했다(제품·그림자는 그대로). 사진을 갈아끼우면 이 작업을 다시 해야 이음매가 안 보인다. */
-img.photo{display:block;border:0;padding:0;width:100%;height:auto;object-fit:cover;background:var(--cream)}
+img.photo{display:block;width:100%;max-width:100%;height:auto;border-radius:var(--radius);object-fit:cover;background:var(--cream)}
 img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 
 /* 버튼 — 980px 필, 44px (00-system/DESIGN.md 기하). 색은 브랜드 토큰. hover 는 정의하지 않는다. */
@@ -86,8 +83,6 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
   overflow:hidden;display:flex;flex-direction:column}
 .mshot{flex:none;aspect-ratio:4/3;width:100%;height:auto;display:block;object-fit:cover;
   background:var(--cream-2);border-bottom:1px solid var(--line)}
-.mshot.ph{display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:10px;color:var(--gray);font-size:12px;line-height:1.5}
 .mtxt{flex:1;padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px}
 .mtxt h3{margin:0;font-size:15px;font-weight:700;line-height:1.35;
   display:flex;justify-content:space-between;align-items:baseline;gap:4px 8px;flex-wrap:wrap}
@@ -346,7 +341,6 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     <li>주차: 더샵스타파크 지하주차장, 평일 1시간 · 주말 2시간 무료</li>
     <li>남/녀 화장실 구분</li>
   </ul>
-  <div class="photo" role="img" aria-label="매장 내부 사진 자리" style="margin-top:18px">[사진 넣을 곳: 매장 내부]</div>
 </section>
 
 <!-- 6. 단체주문 -->
