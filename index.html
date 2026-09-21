@@ -70,6 +70,11 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px}
 .card+.card{margin-top:12px}
 .card h3{font-size:17px;margin-bottom:6px;display:flex;align-items:center;flex-wrap:wrap;gap:0 6px}
+/* NEW 같은 작은 표. .card h3 가 이미 flex+gap 6px 이라 제목 옆에 그대로 붙는다.
+   알약 반지름은 버튼과 같은 980px(00-system/DESIGN.md), 색은 브랜드 그린. hover·모션은 없다. */
+.badge{flex:none;display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:980px;
+  background:var(--green);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.04em;line-height:1;
+  transform:translateY(-1px)}
 .card .price{margin-left:auto;font-size:15px;font-weight:700;color:var(--green);white-space:nowrap}
 .card p{font-size:15px}
 
@@ -373,7 +378,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 
   <!-- 바로 위 상자와의 간격은 .card+.card 가 낸다 — 인라인 margin-top 을 뺐다. -->
   <div class="card">
-    <h3>아그작 아메리카노</h3>
+    <h3>아그작 아메리카노<span class="badge">NEW</span></h3>
     <p>아메리카노 아래에 원당을 깔아, 빨대로 마실 때마다 아그작 씹히는 타운만의 커피. 라떼로도 있습니다.</p>
   </div>
 
