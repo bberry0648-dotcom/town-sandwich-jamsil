@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 한 장짜리 사이트라 실제 공개 주소 하나만 넣는다. #menu 같은 페이지 안 앵커는 별도 페이지가 아니므로 등록하지 않는다.
+     lastmod 는 index.html 을 실제로 고친 날. 내용을 고치면 이 날짜도 같이 고친다. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bberry0648-dotcom.github.io/town-sandwich-jamsil/</loc>
+    <lastmod>2026-09-21</lastmod>
+  </url>
+</urlset>

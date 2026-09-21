@@ -3,14 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TOWN SANDWICH 타운샌드위치</title>
-<meta name="description" content="겉은 바삭하고 속은 촉촉한, 질기지 않은 바게트. 주문과 동시에 만드는 샌드위치. 잠실 더샵스타파크 상가 1층, 매일 09:00–20:00. 단체주문 상담 가능.">
+<title>타운샌드위치 잠실점 | 바게트 샌드위치·커피·단체주문</title>
+<meta name="description" content="잠실 더샵스타파크 상가 1층 타운샌드위치 잠실점. 질기지 않은 바게트 샌드위치와 자체 블렌딩 커피를 매장 식사·포장으로 즐기고, 단체주문은 인원수와 예산에 맞춰 상담합니다. 매일 09:00–20:00.">
+<!-- 이 페이지의 공식 공개 주소. og:url·canonical·JSON-LD @id 가 모두 같은 값을 쓴다. -->
+<link rel="canonical" href="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="TOWN SANDWICH 타운샌드위치">
-<meta property="og:description" content="빵이 다르면 샌드위치도 다릅니다. 전용 바게트 · 자체 블렌딩 커피 · 단체주문 상담.">
+<meta property="og:site_name" content="타운샌드위치 잠실점">
+<meta property="og:url" content="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/">
+<meta property="og:title" content="타운샌드위치 잠실점 | 바게트 샌드위치·커피·단체주문">
+<meta property="og:description" content="잠실 더샵스타파크 상가 1층. 질기지 않은 바게트 샌드위치와 자체 블렌딩 커피, 단체주문 상담.">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/photos/hero.jpg">
 <meta property="og:image:alt" content="타운샌드위치 세트 — 샌드위치와 아이스 아메리카노">
+<meta name="twitter:card" content="summary_large_image">
 <!-- 빈 사진 자리는 없다(2026-09-21). 새 실사를 넣는 법은 photos/README.md. -->
 <!-- 사이트 아이콘 — 대표님이 준 샌드위치 컷(투명 배경 PNG)을 정사각으로 잘라 구웠다. 원본 경로는 CLAUDE.md. -->
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -137,7 +142,8 @@ img.photo.grouponshot{aspect-ratio:4/3;object-position:50% 61%;margin-bottom:22p
    <br> 는 받은 줄 나눔이고, 칸이 좁으면 그 안에서 한 번 더 접힌다(넘치지는 않는다). */
 /* 머리(눈썹·제목)도 같이 가운데로 둔다 — 본문만 가운데면 768px 이상에서 제목만 왼쪽에 남아 어긋나 보인다.
    상자 속 글은 건드리지 않는다(아래 .card 는 왼쪽 정렬 유지). */
-#bread>.eyebrow,#bread>h2,#coffee>.eyebrow,#coffee>h2,#visit>.eyebrow,#visit>h2,#group>.eyebrow,#group>h2{text-align:center}
+#bread>.eyebrow,#bread>h2,#coffee>.eyebrow,#coffee>h2,#visit>.eyebrow,#visit>h2,#group>.eyebrow,#group>h2,
+#faq>.eyebrow,#faq>h2{text-align:center}
 /* 문장형 소제목만 가운데. 「음료」처럼 격자 위에 붙는 분류 라벨(.subhead)은 격자와 같이 왼쪽에 둔다. */
 .subhead.mid{text-align:center}
 /* 매장 내부 사진 띠 — 좌우로 미는 형태. CSS scroll-snap 만 쓰고 JS 슬라이더는 두지 않았다.
@@ -227,6 +233,8 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 <!-- 1. 히어로 -->
 <section class="hero" id="top">
   <img class="photo shopfront" src="photos/storefront.jpg" alt="타운샌드위치 잠실점 매장 외관 — 초록 간판과 야외 테이블" width="860" height="720">
+  <!-- 확정 카피(h1)는 슬로건이라 매장명이 없다 — 첫 화면 텍스트에 상호가 남도록 눈썹 한 줄을 얹었다(2026-09-21 SEO 보완). -->
+  <p class="eyebrow">타운샌드위치 잠실점</p>
   <h1>빵이 다르면<br>샌드위치도 다릅니다.</h1>
   <p class="lead">겉은 바삭하고 속은 촉촉한, 질기지 않은 바게트.<br>주문과 동시에 만들어 맛있는 한 끼를 전합니다.</p>
   <p class="where">잠실 더샵스타파크 상가 1층 · 매일 09:00–20:00</p>
@@ -554,6 +562,34 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   </div>
 </section>
 
+
+<!-- 8. 자주 묻는 질문 — 답은 전부 이 페이지에 이미 있는 확정 정보에서만 가져왔다.
+     최소 주문 수량·예약 마감·배달 지역/배달비 같은 미확정 조건은 쓰지 않고 매장 문의로 넘긴다.
+     아래 FAQPage JSON-LD 는 이 화면 문구와 한 글자도 다르지 않아야 한다 — 고치면 둘 다 고칠 것. -->
+<section id="faq">
+  <p class="eyebrow">안내</p>
+  <h2>자주 묻는 질문</h2>
+  <div class="card">
+    <h3>매장 위치와 영업시간은 어떻게 되나요?</h3>
+    <p>서울 송파구 올림픽로35가길 10 103호, 잠실 더샵스타파크 상가 1층입니다. 매일 09:00–20:00 영업합니다.</p>
+  </div>
+  <div class="card">
+    <h3>매장에서 먹을 수 있나요? 포장도 되나요?</h3>
+    <p>매장 식사와 포장 모두 됩니다. 예약과 배달도 가능합니다.</p>
+  </div>
+  <div class="card">
+    <h3>주차할 수 있나요?</h3>
+    <p>더샵스타파크 지하주차장을 이용하시면 됩니다. 평일 1시간, 주말 2시간 무료입니다.</p>
+  </div>
+  <div class="card">
+    <h3>샌드위치와 음료를 단체로 주문할 수 있나요?</h3>
+    <p>가능합니다. 샌드위치·샐러드·음료 세트로 구성할 수 있고, 인원수와 예산에 맞춰 메뉴를 상담해 드립니다.</p>
+  </div>
+  <div class="card">
+    <h3>단체주문 상담 시 어떤 정보를 알려드리면 되나요?</h3>
+    <p>주문 날짜와 수량, 예산을 알려주시면 메뉴 구성과 수령 일정을 상담해 드립니다. 최소 주문 수량이나 예약 마감 시점 같은 조건은 매장(0507-1448-2447)으로 문의해 주세요.</p>
+  </div>
+</section>
 </main>
 
 <footer>
@@ -573,7 +609,15 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": "https://bberry0648-dotcom.github.io/town-sandwich-jamsil/#restaurant",
   "name": "타운샌드위치 잠실점",
+  "url": "https://bberry0648-dotcom.github.io/town-sandwich-jamsil/",
+  "image": [
+    "https://bberry0648-dotcom.github.io/town-sandwich-jamsil/photos/storefront.jpg",
+    "https://bberry0648-dotcom.github.io/town-sandwich-jamsil/photos/hero.jpg"
+  ],
+  "hasMenu": "https://bberry0648-dotcom.github.io/town-sandwich-jamsil/#menu",
+  "acceptsReservations": true,
   "branchOf": { "@type": "Organization", "name": "타운샌드위치" },
   "servesCuisine": "샌드위치",
   "telephone": "+82-507-1448-2447",
@@ -615,14 +659,67 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     el.scrollIntoView();
   });
 
-  // 이미 저장된 주소에 # 가 남아 있으면 지우고 맨 위로.
+  // 주소에 # 가 붙어 들어온 경우(공유받은 딥링크 · 예전에 저장된 주소).
+  // 가리키는 섹션이 있으면 **거기로 보내고**, 없으면 맨 위로. 어느 쪽이든 주소의 # 는 지운다
+  //  — # 가 주소에 남아야 "다시 열면 단체주문부터 나오는" 문제가 생기므로, 남기지 않는 것이 핵심이다.
   // 브라우저가 앵커로 뛰는 시점이 제각각이라(파싱 중·load 후) 두 번 맞춘다.
   if(hadHash){
+    var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
     try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
-    window.scrollTo(0,0);
-    window.addEventListener('load', function(){ window.scrollTo(0,0); }, {once:true});
+    var settle = function(){ if(target) target.scrollIntoView(); else window.scrollTo(0,0); };
+    settle();
+    window.addEventListener('load', settle, {once:true});
   }
 })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://bberry0648-dotcom.github.io/town-sandwich-jamsil/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "매장 위치와 영업시간은 어떻게 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "서울 송파구 올림픽로35가길 10 103호, 잠실 더샵스타파크 상가 1층입니다. 매일 09:00–20:00 영업합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "매장에서 먹을 수 있나요? 포장도 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "매장 식사와 포장 모두 됩니다. 예약과 배달도 가능합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "주차할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "더샵스타파크 지하주차장을 이용하시면 됩니다. 평일 1시간, 주말 2시간 무료입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "샌드위치와 음료를 단체로 주문할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "가능합니다. 샌드위치·샐러드·음료 세트로 구성할 수 있고, 인원수와 예산에 맞춰 메뉴를 상담해 드립니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "단체주문 상담 시 어떤 정보를 알려드리면 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "주문 날짜와 수량, 예산을 알려주시면 메뉴 구성과 수령 일정을 상담해 드립니다. 최소 주문 수량이나 예약 마감 시점 같은 조건은 매장(0507-1448-2447)으로 문의해 주세요."
+      }
+    }
+  ]
+}
 </script>
 </body>
 </html>
