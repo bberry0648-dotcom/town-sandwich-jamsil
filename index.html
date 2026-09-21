@@ -81,7 +81,9 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 @media(min-width:940px){
   /* 격자만 넓히면 제목과 왼쪽 끝이 어긋난다 — 메뉴 섹션을 통째로 넓혀 제목·격자를 같은 선에 둔다 */
   #menu{width:min(880px,calc(100vw - 40px)); margin-left:50%; transform:translateX(-50%)}
-  .menugrid{grid-template-columns:repeat(3,1fr);gap:14px}
+  /* 넓어지는 건 #menu 뿐이다 — 커피 섹션의 음료 격자는 560px 안에 있어서 3열이면 한 칸 164px 이라
+     이름이 두세 줄로 접힌다(위 주석의 그 문제 그대로). 그래서 3열은 #menu 에만 건다. */
+  #menu .menugrid{grid-template-columns:repeat(3,1fr);gap:14px}
 }
 .mcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   overflow:hidden;display:flex;flex-direction:column}
@@ -90,7 +92,9 @@ img.photo.hero-shot{aspect-ratio:5/4;object-position:50% 72%}
 .mtxt{flex:1;padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px}
 .mtxt h3{margin:0;font-size:15px;font-weight:700;line-height:1.35;
   display:flex;justify-content:space-between;align-items:baseline;gap:4px 8px;flex-wrap:wrap}
-.mtxt .price{font-size:14px;font-weight:700;color:var(--green);white-space:nowrap}
+/* 이름이 길어 가격이 다음 줄로 밀리면(예: 아샷추 (ICE ONLY)) space-between 이 가격을 왼쪽에 놓는다.
+   margin-left:auto 로 줄이 바뀌어도 가격은 오른쪽 끝에 붙는다. 한 줄에 들어갈 때는 아무 영향 없다. */
+.mtxt .price{font-size:14px;font-weight:700;color:var(--green);white-space:nowrap;margin-left:auto}
 .mtxt p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6}
 @media(max-width:400px){.menugrid{gap:10px}.mtxt{padding:11px 12px 13px}
   .mtxt h3{font-size:14px}.mtxt .price{font-size:13px}.mtxt p{font-size:12.5px}}
@@ -353,6 +357,68 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <div class="card" style="margin-top:16px">
     <h3>아그작 아메리카노</h3>
     <p>아메리카노 아래에 원당을 깔아, 빨대로 마실 때마다 아그작 씹히는 타운만의 커피. 라떼로도 있습니다.</p>
+  </div>
+
+  <!-- 음료 타일 — 메뉴 섹션과 같은 .menugrid/.mcard 를 쓴다(설명 없이 이름·가격만).
+       이름·가격의 근거는 naver-order-menu.json (2026-09-21 조회) 의 음료 11종, 가격 오름차순.
+       사진이 오면 각 .mtxt 위에 <img class="mshot" ... width="480" height="360"> 한 줄씩 넣으면 된다. -->
+  <h3 class="subhead">음료</h3>
+  <div class="menugrid">
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>아메리카노<span class="price">2,900원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>아샷추 (ICE ONLY)<span class="price">3,400원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>카페 라떼<span class="price">3,900원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>코코아<span class="price">3,900원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>바닐라 라떼<span class="price">4,400원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>고구마 라떼<span class="price">4,400원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>말차 라떼<span class="price">4,400원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>모카 라떼<span class="price">4,400원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>고구마 샷 라떼<span class="price">4,900원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>말차 샷 라떼<span class="price">4,900원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>딸기 말차 라떼<span class="price">4,900원</span></h3>
+      </div>
+    </article>
   </div>
 </section>
 
