@@ -21,29 +21,41 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" href="gmarket-medium.woff2" as="font" type="font/woff2" crossorigin>
+<!-- 제목용 G마켓 산스(Bold)와 본문용 Wanted Sans. 본문 첫 조각은 미리 받아 글자가 늦게 뜨는 걸 줄인다. -->
+<link rel="preload" href="gmarket-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="wanted-sans.css">
 <link rel="preload" href="logo.png" as="image">
 <style>
 /* 브랜드 토큰 — ../group-order-app/style.css 와 같은 값. 두 페이지는 같은 옷을 입는다. */
-@font-face{font-family:'GmarketSans';src:url('gmarket-medium.woff2') format('woff2');font-weight:500;font-display:swap}
+/* G마켓 medium(500) 은 본문이 Wanted Sans 로 넘어가며 쓰는 데가 없어져 뺐다 — 300KB 절약. */
 @font-face{font-family:'GmarketSans';src:url('gmarket-bold.woff2') format('woff2');font-weight:700;font-display:swap}
 :root{
   --green-deep:#1F3A21; --green:#2F5733; --green-soft:#8FBE96;
-  --cream:#EEF1E6; --cream-2:#E7ECE1; --line:#D3D9C9; --gray:#87927F; --ink:#1E2820;
+  --cream:#EEF1E6; --cream-2:#E7ECE1; --line:#D3D9C9; --gray:#5F6A5A; --ink:#1E2820; --ink-2:#46503F;
   --mustard:#E0A02F;
-  --radius:12px; --max:560px;
+  --radius:12px; --max:560px; --measure:600px;
   color-scheme:light;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:'GmarketSans',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;font-weight:500;background:var(--cream);color:var(--ink);line-height:1.65;font-size:16px;word-break:keep-all}
+/* 본문 = Wanted Sans (2026-09-24, 수정이 선택 A안). 제목만 G마켓 산스로 남긴다.
+   G마켓은 굵기 500(medium)을 본문에 쓰고 있었는데 본문이 넘어가면서 medium 은 쓰는 데가 없어졌다 — 파일을 뺐다. */
+body{margin:0;font-family:'Wanted Sans Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;font-weight:400;background:var(--cream);color:var(--ink);line-height:1.55;font-size:16px;word-break:keep-all}
 a{color:var(--green);text-underline-offset:3px}
-h1,h2,h3{margin:0;color:var(--green-deep);letter-spacing:-0.02em;line-height:1.3}
+/* 제목은 브랜드 개성을 남긴다 — G마켓 산스 Bold. 본문(Wanted Sans)과 역할이 갈린다. */
+h1,h2,h3,.topcta,.badge{font-family:'GmarketSans',-apple-system,sans-serif}
+h1,h2,h3{margin:0;color:var(--green-deep);font-weight:700;letter-spacing:-0.025em;line-height:1.28}
+/* 본문은 읽기 쪽으로 — 제목이 굵고 좁은 만큼 본문은 행간을 넓혀 역할을 갈라 놓는다. */
+/* 2026-09-24: 전체적으로 행간을 조였다. 한글 본문은 1.5 아래로 내리면 답답해져 1.58 에서 멈춘다. */
+p,li,dd{line-height:1.58}
 p{margin:0}
 ul{margin:0;padding:0;list-style:none}
 
 .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-section{padding:40px 0}
+/* 구분선과 눈썹 사이가 떠 보였다(2026-09-24 지시) — 위만 줄인다.
+   위아래를 똑같이 40px 로 두면 선이 위아래 어디에도 안 붙어 허공에 뜬다.
+   위를 좁히면 선이 「다음 칸이 시작된다」는 뜻으로 읽힌다. 아래는 그대로 둬 칸 사이 숨은 남긴다. */
+section{padding:24px 0 38px}
 section+section{border-top:1px solid var(--line)}
 .eyebrow{font-size:13px;color:var(--gray);letter-spacing:0.02em;margin-bottom:8px}
 h2{font-size:24px;margin-bottom:14px}
@@ -67,6 +79,9 @@ img.photo.grouponshot{aspect-ratio:4/3;object-position:50% 61%;margin-bottom:22p
 /* 글자 옆에 붙는 아이콘 — 글자보다 살짝 작게, 세로 중심을 글자에 맞춘다. */
 .btn .bi{flex:none;display:block}
 .btn.icon svg{display:block}
+/* 키보드 이동 시 초점 표시. 브랜드 그린 테두리라 버튼 위에서도 보인다. 마우스 클릭에는 안 뜬다. */
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--green-deep);outline-offset:2px;border-radius:4px}
+.btn:focus-visible,.topcta:focus-visible,.bar a:focus-visible{border-radius:980px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 @media(max-width:400px){.actions{gap:8px}}
 /* 단체주문 세 버튼은 휴대폰에서도 한 줄(2026-09-21 지시). 폭이 모자라 글자·아이콘·좌우 여백을 줄인다 —
@@ -83,7 +98,9 @@ img.photo.grouponshot{aspect-ratio:4/3;object-position:50% 61%;margin-bottom:22p
 }
 
 /* 히어로 */
-.hero{padding:36px 0 40px;text-align:center}
+/* 히어로가 390px 에서 1063px 였다 — 한 화면(844px)을 넘어 메뉴까지 내려가는 길이 멀었다.
+   사진은 자르지도 늘이지도 않았다(제품이 왜곡되면 안 된다) — 여백만 줄였다. */
+.hero{padding:26px 0 30px;text-align:center}
 .hero .actions{justify-content:center}
 /* 히어로 네 버튼도 휴대폰에서 한 줄(2026-09-24 지시). 인스타 아이콘이 둘째 줄로 떨어져 있었다.
    단체주문 줄과 같은 방식이다 — 높이 44px·980px 필은 그대로 두고, 한 줄에 들어가는 데 필요한 값만 건드린다.
@@ -94,11 +111,11 @@ img.photo.grouponshot{aspect-ratio:4/3;object-position:50% 61%;margin-bottom:22p
   .hero .actions .btn{flex:1 1 auto;min-width:0;padding:11px 10px;font-size:15px;white-space:nowrap}
   .hero .actions .btn.icon{flex:0 0 44px;width:44px;padding:0}
 }
-.shopfront{aspect-ratio:4283/3588;margin-bottom:24px}
+.shopfront{aspect-ratio:4283/3588;margin-bottom:18px}
 .hero h1{font-size:32px;margin-bottom:14px}
 .hero .lead{font-size:16px}
 .hero .where{margin-top:10px;font-size:14px;color:var(--gray)}
-.hero .photo{margin-top:26px}
+.hero .photo{margin-top:20px}
 
 /* 카드 */
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px}
@@ -118,7 +135,12 @@ img.photo.grouponshot{aspect-ratio:4/3;object-position:50% 61%;margin-bottom:22p
 /* 기본 2열. 본문 폭(560px) 안에서 3열로 쪼개면 한 칸 165px 이라 설명이 13글자마다 끊긴다.
    그래서 화면이 넉넉할 때만 격자를 본문 밖으로 넓혀 3열로 간다 — 한 칸 280px 로 2열일 때(254px)보다 오히려 넓다. */
 .menugrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+/* PC 에서 메뉴 구간만 880px 이고 나머지는 520px 이라 메뉴만 붕 떠 보였다(2026-09-24 실측).
+   본문 폭을 720px 로 올려 차이를 좁힌다. 다만 **문단까지 720px 로 늘리지는 않는다** —
+   한 줄이 길어지면 오히려 읽기 나빠진다. 문단은 --measure(600px) 로 묶어 가운데 둔다. */
 @media(min-width:940px){
+  :root{--max:720px}
+  .lead,.stanza,#faq .card p,footer{max-width:var(--measure);margin-left:auto;margin-right:auto}
   /* 격자만 넓히면 제목과 왼쪽 끝이 어긋난다 — 메뉴 섹션을 통째로 넓혀 제목·격자를 같은 선에 둔다 */
   #menu{width:min(880px,calc(100vw - 40px)); margin-left:50%; transform:translateX(-50%)}
   /* 넓어지는 건 #menu 뿐이다 — 커피 섹션의 음료 격자는 560px 안에 있어서 3열이면 한 칸 164px 이라
@@ -139,9 +161,15 @@ img.photo.grouponshot{aspect-ratio:4/3;object-position:50% 61%;margin-bottom:22p
 /* 이름이 길어 가격이 다음 줄로 밀리면(예: 아샷추 (ICE ONLY)) space-between 이 가격을 왼쪽에 놓는다.
    margin-left:auto 로 줄이 바뀌어도 가격은 오른쪽 끝에 붙는다. 한 줄에 들어갈 때는 아무 영향 없다. */
 .mtxt .price{font-size:14px;font-weight:700;color:var(--green);white-space:nowrap;margin-left:auto}
-.mtxt p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.6}
-@media(max-width:400px){.menugrid{gap:10px}.mtxt{padding:11px 12px 13px}
-  .mtxt h3{font-size:14px}.mtxt .price{font-size:13px}.mtxt p{font-size:12.5px}}
+.mtxt p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.5}
+/* 좁은 화면(≤480px): 이름과 가격이 한 줄에서 비좁아진다 — 가격을 아랫줄에 따로 둔다.
+   글씨를 줄여서 맞추지 않는다(2026-09-24 지시) — 설명은 14px 아래로 내리지 않고, 대신 문장을 짧게 썼다. */
+@media(max-width:480px){
+  .mtxt h3{display:block;font-size:14.5px}
+  .mtxt .price{display:block;margin:3px 0 0;font-size:14px}
+  .mtxt p{font-size:14px;line-height:1.5}
+}
+@media(max-width:400px){.menugrid{gap:10px}.mtxt{padding:11px 12px 13px}}
 
 /* 목록 */
 .list li{padding:8px 0 8px 22px;position:relative;font-size:15px}
@@ -233,13 +261,46 @@ section{scroll-margin-top:68px}
 }
 
 /* 푸터 */
-footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid var(--line);text-align:center;line-height:1.75}
+footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid var(--line);text-align:center;line-height:1.6}
 
 /* 모바일 하단 고정 바 */
 .bar{display:none;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:8px;z-index:10}
 .bar a{flex:1;height:44px;display:flex;align-items:center;justify-content:center;border-radius:980px;font-size:15px;font-weight:700;text-decoration:none;border:1px solid var(--green);color:var(--green);background:#fff}
 .bar a.primary{background:var(--green);color:#fff}
 @media(max-width:767px){.bar{display:flex}}
+
+/* ═══ 2026-09-24 개편에서 새로 생긴 덩어리들 ═══ */
+
+/* 「빵」 특징 3가지 — 카드 상자를 쓰지 않는다. 구분선과 여백으로만 나눈다(2026-09-24 지시).
+   라벨(b)과 설명(span)의 굵기·크기·색을 갈라 놓아, 훑어볼 때 라벨만 읽혀도 뜻이 통하게 했다. */
+.feat{display:grid;gap:0;margin-top:22px;text-align:left}
+.feat li{padding:15px 0;border-top:1px solid var(--line)}
+.feat li:last-child{border-bottom:1px solid var(--line)}
+.feat b{display:block;font-size:15.5px;font-weight:700;color:var(--green-deep);margin-bottom:3px}
+.feat span{display:block;font-size:15px;color:var(--ink-2);line-height:1.55}
+@media(min-width:720px){
+  /* 넓은 화면에서는 셋을 나란히. 구분선은 위 한 줄만 남긴다 — 칸마다 위아래 선을 다 그으면 표처럼 보인다. */
+  .feat{grid-template-columns:repeat(3,1fr);gap:0 26px;border-top:1px solid var(--line);padding-top:4px}
+  .feat li{border-top:0;padding:14px 0 2px}
+  .feat li:last-child{border-bottom:0}
+}
+
+/* 세트 할인 3칸 — 할인액이 숫자라 눈에 먼저 들어오게 크기를 준다.
+   ⚠️ 구성·최종 가격은 확인된 자료가 없어 적지 않았다. 확인되면 span 아래 한 줄을 더 붙이면 된다. */
+.setgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.setgrid div{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:13px 8px;text-align:center}
+.setgrid b{display:block;font-size:13.5px;font-weight:700;color:var(--ink-2);margin-bottom:5px}
+.setgrid span{display:block;font-size:15px;font-weight:700;color:var(--green);text-wrap:balance}  /* nowrap 을 쓰면 320px 에서 「2,000원 할인」이 칸 끝에 닿는다. 접히게 두면 칸이 조금 높아질 뿐 넘치지 않는다. */
+@media(max-width:360px){.setgrid{gap:7px}.setgrid div{padding:11px 4px}.setgrid b{font-size:12.5px}.setgrid span{font-size:14px}}
+.setnote{margin-top:10px}
+
+/* 커피 옵션 줄 — 「찾을 수 있어야 하는 정보」라 상자에서 꺼내 한 줄로 세웠다. */
+.optline{margin-top:12px;padding:13px 16px;background:var(--cream-2);border-radius:var(--radius);text-align:left}
+.optline b{display:block;font-size:14px;font-weight:700;color:var(--green-deep);margin-bottom:3px}
+.optline span{display:block;font-size:15px;color:var(--ink-2)}
+
+/* 역삼점 표시 — 잠실점 문의처와 헷갈리지 않게. 초록 알약(.badge)과 구분되도록 톤을 낮춘다. */
+.badge.alt{background:transparent;color:var(--gray);border:1px solid var(--line);font-weight:500}
 </style>
 </head>
 <body>
@@ -247,7 +308,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 <header class="topbar">
   <div class="wrap">
     <a class="logo" href="#top">
-      <img src="logo.png" alt="타운샌드위치 잠실점" width="419" height="235">
+      <img fetchpriority="high" decoding="async" src="logo.png" alt="타운샌드위치 잠실점" width="419" height="235">
     </a>
     <nav class="topnav" aria-label="섹션 바로가기">
       <a href="#bread">바게트</a>
@@ -264,7 +325,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 
 <!-- 1. 히어로 -->
 <section class="hero" id="top">
-  <img class="photo shopfront" src="photos/storefront.jpg" alt="타운샌드위치 잠실점 매장 외관 — 초록 간판과 야외 테이블" width="860" height="720">
+  <img fetchpriority="high" decoding="async" class="photo shopfront" src="photos/storefront.jpg" alt="타운샌드위치 잠실점 매장 외관 — 초록 간판과 야외 테이블" width="860" height="720">
   <!-- 확정 카피(h1)는 슬로건이라 매장명이 없다 — 첫 화면 텍스트에 상호가 남도록 눈썹 한 줄을 얹었다(2026-09-21 SEO 보완). -->
   <p class="eyebrow">타운샌드위치 잠실점</p>
   <h1>빵이 다르면<br>샌드위치도 다릅니다.</h1>
@@ -287,34 +348,22 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
       </svg>
     </a>
   </div>
-  <img class="photo hero-shot" src="photos/hero.jpg" alt="타운샌드위치 세트 — 국내산 햄·치즈·토마토·양상추를 넣은 샌드위치와 아이스 아메리카노" width="1131" height="1600">
+  <img fetchpriority="high" decoding="async" class="photo hero-shot" src="photos/hero.jpg" alt="타운샌드위치 세트 — 국내산 햄·치즈·토마토·양상추를 넣은 샌드위치와 아이스 아메리카노" width="1131" height="1600">
 </section>
 
-<!-- 2. 빵 -->
+<!-- 2. 빵 — 압축본(2026-09-24 지시). 전에는 3연 + 상자 2칸(5줄)이 같은 말을 세 번 했다.
+     남긴 문단: 대표님 문안 2연을 줄바꿈까지 그대로. 1연·3연과 상자 2칸은 뺐다.
+     특징 3가지의 출처: ../brand-facts.md §3 「빵」 — 대표님이 체험단에 배포한 안내문이라 승인된 표현이다.
+     히어로 리드와 겹치지 않게, 결과("바삭·촉촉")가 아니라 **무엇을 배제하고 무엇을 맞췄는지**를 적었다. -->
 <section id="bread">
   <p class="eyebrow">바게트</p>
   <h2>맛있는 샌드위치의 시작, 바게트부터</h2>
-  <!-- 대표님이 준 문안. 문장뿐 아니라 줄바꿈 위치·문단 나눔도 받은 그대로다(2026-09-21 스크린샷). -->
-  <p class="lead stanza">한입 베어 물었을 때의 바삭함부터<br>재료와 어우러지는 마지막 한입까지.</p>
   <p class="lead stanza">타운샌드위치는<br>샌드위치의 맛을 완성하는<br>바게트의 식감을 중요하게 생각합니다.</p>
-  <p class="lead stanza">겉은 바삭하고 속은 촉촉하게,<br>질기지 않아 편하게 즐길 수 있는<br>바게트에 재료의 맛을 조화롭게 담았습니다.</p>
-  <div class="two">
-    <div class="card">
-      <h3>한입에 느껴지는 차이</h3>
-      <ul class="list">
-        <li>겉은 바삭해 기분 좋은 식감을 느낄 수 있습니다.</li>
-        <li>속은 촉촉해 재료와 부드럽게 어우러집니다.</li>
-        <li>질기지 않아 편하게 즐길 수 있는 바게트입니다.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>함께 먹을 때 더 맛있도록</h3>
-      <ul class="list">
-        <li>빵의 맛과 식감을 살리면서 속재료의 풍미가 자연스럽게 어우러지도록 만듭니다.</li>
-        <li>마지막 한입까지 맛있게 즐길 수 있도록 빵과 재료, 소스의 조화를 생각합니다.</li>
-      </ul>
-    </div>
-  </div>
+  <ul class="feat">
+    <li><b>질기지 않게</b><span>부담스럽게 질기지 않으면서, 바게트 특유의 식감은 살렸습니다.</span></li>
+    <li><b>재료와 어울리게</b><span>다양한 재료와 어울리도록 속의 밀도와 식감을 조정했습니다.</span></li>
+    <li><b>식감이 오래가게</b><span>시간이 지나면 식감이 떨어지는 빵은 쓰지 않았습니다.</span></li>
+  </ul>
 </section>
 
 <!-- 3. 뭘 시킬까 -->
@@ -323,73 +372,73 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <h2>바게트 샌드위치</h2>
   <div class="menugrid">
     <article class="mcard">
-      <img class="mshot" src="photos/menu-town.jpg" alt="타운샌드위치" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-town.jpg" alt="타운샌드위치" width="480" height="360">
       <div class="mtxt">
         <h3>타운샌드위치<span class="price">8,800원</span></h3>
-        <p>겉은 바삭하고 속은 부드러운 소프트 바게트에 국내산 햄과 치즈, 신선한 채소를 담았습니다.</p>
+        <p>국내산 햄과 치즈, 양상추와 토마토를 넣은 대표 메뉴입니다.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-basil.jpg" alt="바질 잠봉뵈르" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-basil.jpg" alt="바질 잠봉뵈르" width="480" height="360">
       <div class="mtxt">
         <h3>바질 잠봉뵈르<span class="price">8,800원</span></h3>
-        <p>향긋한 수제 바질버터와 짭조름한 국내산 햄, 루꼴라가 어우러집니다. 토마토 추가를 추천합니다.</p>
+        <p>수제 바질버터와 국내산 햄, 루꼴라. 토마토 추가를 추천합니다.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-apple.jpg" alt="애플 잠봉뵈르" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-apple.jpg" alt="애플 잠봉뵈르" width="480" height="360">
       <div class="mtxt">
         <h3>애플 잠봉뵈르<span class="price">8,800원</span></h3>
-        <p>은은한 시나몬 향의 애플 콤포트에 담백한 국내산 햄과 고소한 수제 버터. 달콤하면서 짭짤한 잠봉뵈르입니다.</p>
+        <p>시나몬 향 애플 콤포트에 국내산 햄과 수제 버터. 달콤짭짤합니다.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-cranberry.jpg" alt="크랜베리 잠봉뵈르" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-cranberry.jpg" alt="크랜베리 잠봉뵈르" width="480" height="360">
       <div class="mtxt">
         <h3>크랜베리 잠봉뵈르<span class="price">8,800원</span></h3>
-        <p>달콤한 수제 크랜베리버터와 국내산 스모크햄, 루꼴라가 들어갑니다.</p>
+        <p>수제 크랜베리버터와 국내산 스모크햄, 루꼴라.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-truffle.jpg" alt="트러플 잠봉뵈르" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-truffle.jpg" alt="트러플 잠봉뵈르" width="480" height="360">
       <div class="mtxt">
         <h3>트러플 잠봉뵈르<span class="price">8,800원</span></h3>
-        <p>트러플 향이 가득한 수제 트러플버터에 국내산 스모크햄과 루꼴라를 더했습니다.</p>
+        <p>수제 트러플버터와 국내산 스모크햄, 루꼴라.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-plain.jpg" alt="플레인 잠봉뵈르" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-plain.jpg" alt="플레인 잠봉뵈르" width="480" height="360">
       <div class="mtxt">
         <h3>플레인 잠봉뵈르<span class="price">8,300원</span></h3>
-        <p>고소한 수제 버터와 국내산 스모크햄을 듬뿍 넣은 프랑스식 잠봉뵈르입니다.</p>
+        <p>수제 버터와 국내산 스모크햄만 넣은 프랑스식 잠봉뵈르.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-banmi.jpg" alt="그릴드 치킨 반미" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-banmi.jpg" alt="그릴드 치킨 반미" width="480" height="360">
       <div class="mtxt">
         <h3>그릴드 치킨 반미<span class="price">8,300원</span></h3>
-        <p>오븐에 직접 구운 국내산 닭고기와 야채 초절임이 들어간 새콤달콤한 반미입니다.</p>
+        <p>오븐에 구운 국내산 닭고기와 야채 초절임. 새콤달콤합니다.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-cajun.jpg" alt="케이준 치킨 커리" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-cajun.jpg" alt="케이준 치킨 커리" width="480" height="360">
       <div class="mtxt">
         <h3>케이준 치킨 커리<span class="price">8,300원</span></h3>
-        <p>케이준 양념에 구운 닭가슴살과 매콤한 커리. 신선한 야채와 토마토가 듬뿍 들어갑니다.</p>
+        <p>케이준 양념 닭가슴살과 매콤한 커리, 야채와 토마토.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-eggbanmi.jpg" alt="에그마요 반미" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-eggbanmi.jpg" alt="에그마요 반미" width="480" height="360">
       <div class="mtxt">
         <h3>에그마요 반미<span class="price">8,300원</span></h3>
-        <p>부드럽고 고소한 에그마요에 아삭한 야채 초절임을 더한 담백한 반미입니다.</p>
+        <p>에그마요에 아삭한 야채 초절임을 더한 담백한 반미.</p>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot" src="photos/menu-eggsando.jpg" alt="타운 에그산도" width="480" height="360">
+      <img loading="lazy" decoding="async" class="mshot" src="photos/menu-eggsando.jpg" alt="타운 에그산도" width="480" height="360">
       <div class="mtxt">
         <h3>타운 에그산도<span class="price">7,300원</span></h3>
-        <p>바삭한 바게트에 에그마요를 듬뿍 넣었습니다. 취향에 맞는 토핑을 더할 수 있습니다.</p>
+        <p>에그마요를 듬뿍 넣었습니다. 토핑을 추가할 수 있습니다.</p>
       </div>
     </article>
   </div>
@@ -426,7 +475,15 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     </article>
   </div>
 
-  <p class="muted" style="margin-top:12px">음료 세트 · 스프 세트 주문 시 1,000원 할인<br>올인원 세트 주문 시 2,000원 할인</p>
+  <!-- 확인된 것은 할인액 셋뿐이다(수정이 제공, 2026-09-21). 세트 구성·적용 메뉴·최종 가격은
+       naver-order-menu.json 에도 brand-facts.md 에도 없다 — 지어내지 않고 매장 문의로 넘긴다. -->
+  <h3 class="subhead mid">세트 할인</h3>
+  <div class="setgrid">
+    <div><b>음료 세트</b><span>1,000원 할인</span></div>
+    <div><b>스프 세트</b><span>1,000원 할인</span></div>
+    <div><b>올인원 세트</b><span>2,000원 할인</span></div>
+  </div>
+  <p class="muted setnote">세트 구성과 적용되는 메뉴는 매장에서 확인해 주세요.</p>
 </section>
 
 <!-- 4. 커피 -->
@@ -436,16 +493,17 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
        받은 그림을 고치지 않고 보이게 하려고 딥그린 판을 깔았다. 자세한 사정은 CLAUDE.md. -->
   <h2>커피에도 타운만의 기준을 담았습니다</h2>
   <div class="markplate">
-    <img src="photos/town-blend.png" alt="TOWN BLENDING from GRAY GRISTMILL" width="470" height="520">
+    <img loading="lazy" decoding="async" src="photos/town-blend.png" alt="TOWN BLENDING from GRAY GRISTMILL" width="470" height="520">
   </div>
   <!-- 대표님이 준 문안(2026-09-21). 문장도 줄바꿈도 받은 그대로 — 「빵」 섹션과 같은 규칙. -->
   <p class="lead stanza">그레이 그리스트밀과 함께 만든 ‘타운블렌드’<br>깊고 묵직한 다크초콜릿의 풍미와<br>고소한 구운 아몬드의 노트를 담았습니다.</p>
-  <div class="card">
-    <ul class="list">
-      <li>일정한 맛을 위해, AI 기반으로 샷 추출을 조정하는 카예 머신을 사용합니다.</li>
-      <li>커피는 디카페인으로도 즐길 수 있습니다.</li>
-      <li>우유 대신 오트밀크를 선택할 수 있습니다.</li>
-    </ul>
+  <!-- 카예 머신 한 줄은 상자에 안 넣는다(2026-09-24 지시) — 불릿 하나짜리 흰 상자가 떠 보였다.
+       바로 위 타운블렌드 문단에 이어지는 문장이라 같은 형태(.lead.stanza)로 붙인다. -->
+  <p class="lead stanza">일정한 맛을 위해, AI 기반으로 샷 추출을 조정하는 카예 머신을 사용합니다.</p>
+  <!-- 디카페인·오트밀크는 「찾을 수 있어야 하는 정보」라 기계 설명과 같은 불릿에서 꺼냈다(2026-09-24 지시). -->
+  <div class="optline">
+    <b>주문할 때 바꿀 수 있어요</b>
+    <span>디카페인으로 변경 · 우유 대신 오트밀크로 변경</span>
   </div>
 
   <!-- 바로 위 상자와의 간격은 .card+.card 가 낸다 — 인라인 margin-top 을 뺐다. -->
@@ -463,13 +521,13 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <h3 class="subhead">음료</h3>
   <div class="menugrid">
     <article class="mcard">
-      <img class="mshot dshot" src="photos/drink-americano.jpg" alt="아메리카노" width="480" height="640">
+      <img loading="lazy" decoding="async" class="mshot dshot" src="photos/drink-americano.jpg" alt="아메리카노" width="480" height="640">
       <div class="mtxt">
         <h3>아메리카노<span class="price">2,900원</span></h3>
       </div>
     </article>
     <article class="mcard">
-      <img class="mshot dshot" src="photos/drink-latte.jpg" alt="카페 라떼" width="480" height="640">
+      <img loading="lazy" decoding="async" class="mshot dshot" src="photos/drink-latte.jpg" alt="카페 라떼" width="480" height="640">
       <div class="mtxt">
         <h3>카페 라떼<span class="price">3,900원</span></h3>
       </div>
@@ -533,9 +591,9 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
   <h2>샌드위치 한 끼, 커피 한 잔의 여유</h2>
   <div class="shots" role="region" aria-label="매장 내부 사진 3장 — 좌우로 밀어서 보기" tabindex="0">
-    <img src="photos/store-3.jpg" alt="주문 카운터와 테이블 좌석" width="540" height="720">
-    <img src="photos/store-2.jpg" alt="메뉴 그림이 붙은 나무 벽과 창가 바 좌석" width="540" height="720">
-    <img src="photos/store-1.jpg" alt="매장 안 셀프바와 벽에 붙은 타운샌드위치 사인" width="540" height="720">
+    <img loading="lazy" decoding="async" src="photos/store-3.jpg" alt="주문 카운터와 테이블 좌석" width="540" height="720">
+    <img loading="lazy" decoding="async" src="photos/store-2.jpg" alt="메뉴 그림이 붙은 나무 벽과 창가 바 좌석" width="540" height="720">
+    <img loading="lazy" decoding="async" src="photos/store-1.jpg" alt="매장 안 셀프바와 벽에 붙은 타운샌드위치 사인" width="540" height="720">
   </div>
   <p class="lead stanza">혼자서도, 함께여도 편안하게.<br>타운샌드위치에서 맛있는 식사 시간을 즐겨보세요.</p>
   <div class="card">
@@ -553,7 +611,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
        4:3 틀에 object-position 61% 로 앉혀 쌓인 상자 더미가 프레임 한가운데 오게 했다. -->
   <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
   <h2>함께 먹는 자리에도, 타운샌드위치</h2>
-  <img class="photo grouponshot" src="photos/group.jpg" alt="포장 상자에 담겨 테이블에 쌓인 단체주문 샌드위치" width="750" height="1000">
+  <img loading="lazy" decoding="async" class="photo grouponshot" src="photos/group.jpg" alt="포장 상자에 담겨 테이블에 쌓인 단체주문 샌드위치" width="750" height="1000">
   <p class="lead stanza">회사 회의부터 학교·학원 행사, 촬영 현장과 각종 모임까지.<br>함께 즐길 샌드위치와 음료를 타운에서 준비해 보세요.</p>
   <div class="card">
     <ul class="list">
@@ -587,7 +645,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     </dl>
   </div>
   <div class="card">
-    <h3>역삼점</h3>
+    <h3>역삼점<span class="badge alt">다른 매장 안내</span></h3>
     <dl>
       <dt>주소</dt><dd>서울 강남구 논현로74길 5 101호</dd>
       <dt>영업</dt><dd>월–금 10:00–20:00 · 토 10:00–15:00 · 일 휴무</dd>
