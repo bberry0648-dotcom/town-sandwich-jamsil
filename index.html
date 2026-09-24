@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>타운샌드위치 잠실점 | 바게트 샌드위치·커피·단체주문</title>
-<meta name="description" content="잠실 더샵스타파크 상가 1층 타운샌드위치 잠실점. 질기지 않은 바게트 샌드위치와 자체 블렌딩 커피를 매장 식사·포장으로 즐기고, 단체주문은 인원수와 예산에 맞춰 상담합니다. 매일 09:00–20:00.">
+<meta name="description" content="잠실 더샵스타파크 상가 1층 타운샌드위치 잠실점. 질기지 않은 소프트 바게트 샌드위치와 그레이 그리스트밀과 함께 만든 타운블렌드를 즐겨보세요. 매장 식사·포장·단체주문 상담이 가능합니다. 매일 09:00–20:00.">
 <!-- 이 페이지의 공식 공개 주소. og:url·canonical·JSON-LD @id 가 모두 같은 값을 쓴다. -->
 <link rel="canonical" href="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="타운샌드위치 잠실점">
 <meta property="og:url" content="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/">
 <meta property="og:title" content="타운샌드위치 잠실점 | 바게트 샌드위치·커피·단체주문">
-<meta property="og:description" content="잠실 더샵스타파크 상가 1층. 질기지 않은 바게트 샌드위치와 자체 블렌딩 커피, 단체주문 상담.">
+<meta property="og:description" content="질기지 않은 소프트 바게트 샌드위치와 그레이 그리스트밀과 함께 만든 타운블렌드. 잠실 더샵스타파크 상가 1층에서 만나보세요.">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://bberry0648-dotcom.github.io/town-sandwich-jamsil/photos/hero.jpg">
 <meta property="og:image:alt" content="타운샌드위치 세트 — 샌드위치와 아이스 아메리카노">
@@ -315,6 +315,22 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 
 /* 본문 중 강조할 문단. 본문 폰트(Wanted Sans)의 700 — 가변폰트라 파일이 더 늘지 않는다. */
 .stanza.bold{font-weight:700;color:var(--green-deep)}
+
+/* 커피 옵션 두 문장 — 문장마다 한 줄씩. */
+.optline span+span{margin-top:2px}
+
+/* 「빵」 두 묶음 — 「주문 시점」과 같은 옅은 판. 제목은 .optline b 와 같은 모양(h3 라 따로 적는다). */
+.breadbox{margin-top:20px}
+.breadbox+.breadbox{margin-top:12px}
+.breadbox h3{font-size:14px;font-weight:700;color:var(--green-deep);margin:0 0 3px;font-family:inherit;letter-spacing:normal;line-height:1.5}
+
+/* 단체주문 가격 안내 — 메인 안내라 가운데(정렬 원칙). 「매장과 동일한 메뉴 가격」만 초록 볼드로 강조,
+   배달비 줄은 보조지만 15px 로 읽히게 둔다(작은 회색 글씨로 숨기지 않는다). */
+.pricenote{margin:20px auto 16px;max-width:var(--measure);text-align:center}
+.pricenote p{font-size:16px;font-weight:700;color:var(--green-deep);line-height:1.58;text-wrap:balance}
+.pricenote p+p{margin-top:4px}
+.pricenote strong{color:var(--green);font-weight:800}
+.pricenote .fee{margin-top:8px;font-size:15px;font-weight:500;color:var(--ink-2)}
 </style>
 </head>
 <body>
@@ -365,30 +381,24 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <img fetchpriority="high" decoding="async" class="photo hero-shot" src="photos/hero.jpg" alt="타운샌드위치 세트 — 국내산 스모크햄·치즈·토마토·양상추를 넣은 샌드위치와 아이스 아메리카노" width="1131" height="1600">
 </section>
 
-<!-- 2. 빵 — 대표님 문안 3연 + 원래 특징 5줄(2026-09-24 지시로 복원).
-     9/24 낮에 「가독성 개편」이라며 문안 1연·3연을 지우고 특징을 brand-facts 문장 3줄로 갈아끼웠는데,
-     대표님이 바로 잡아냈다. **문안은 문장·줄바꿈·문단 나눔까지 받은 그대로다(2026-09-21 스크린샷) — 건드리지 않는다.**
-     특징 5줄도 원문 그대로. 바뀐 것은 껍데기뿐이다: 흰 상자(.card) 2칸 → 상자 제목을 카테고리(.subhead)로 올리고
-     문장은 구분선 목록(.feat span)으로. 「흰색 박스 쓰지마」(2026-09-24 지시). -->
+<!-- 2. 빵 — 도입 1문장 + 특징 2줄 + 1줄. 2026-09-24 저녁 대표님이 직접 준 문안으로 반복을 줄였다
+     (3연·특징 5줄 → 이 형태). 문장은 받은 그대로다 — 고치지 않는다.
+     흰 상자(.card)는 쓰지 않는다: 카테고리(.subhead) + 구분선 목록(.feat span). 「흰색 박스 쓰지마」(2026-09-24 지시). -->
 <section id="bread">
   <p class="eyebrow">바게트</p>
   <h2>맛있는 샌드위치의 시작, 바게트부터</h2>
-  <p class="lead stanza">한입 베어 물었을 때의 바삭함부터<br>재료와 어우러지는 마지막 한입까지.</p>
-  <p class="lead stanza">타운샌드위치는<br>샌드위치의 맛을 완성하는<br>바게트의 식감을 중요하게 생각합니다.</p>
-  <p class="lead stanza">겉은 바삭하고 속은 촉촉하게,<br>질기지 않아 편하게 즐길 수 있는<br>바게트에 재료의 맛을 조화롭게 담았습니다.</p>
-  <!-- 카테고리는 격자 위 분류 라벨이라 목록과 같이 왼쪽(정렬 원칙). 둘 다 3칸 격자를 쓴다 —
-       아래 묶음은 두 줄뿐이라 셋째 칸이 비지만, 그래야 두 묶음의 첫 글자가 같은 선에서 시작한다. -->
-  <h3 class="subhead">한입에 느껴지는 차이</h3>
-  <ul class="feat">
-    <li><span>겉은 바삭해 기분 좋은 식감을 느낄 수 있습니다.</span></li>
-    <li><span>속은 촉촉해 재료와 부드럽게 어우러집니다.</span></li>
-    <li><span>질기지 않아 편하게 즐길 수 있는 바게트입니다.</span></li>
-  </ul>
-  <h3 class="subhead">함께 먹을 때 더 맛있도록</h3>
-  <ul class="feat">
-    <li><span>빵의 맛과 식감을 살리면서 속재료의 풍미가 자연스럽게 어우러지도록 만듭니다.</span></li>
-    <li><span>마지막 한입까지 맛있게 즐길 수 있도록 빵과 재료, 소스의 조화를 생각합니다.</span></li>
-  </ul>
+  <p class="lead stanza">타운샌드위치는 빵의 식감과 속재료의 풍미가 어우러지도록, 바게트부터 재료의 조합까지 세심하게 생각합니다.</p>
+  <!-- 두 묶음은 단체주문 「주문 시점」과 같은 옅은 판(.optline)으로(2026-09-24 저녁, 대표님이 그 칸 스크린샷을 주며 지시).
+       흰 상자(.card)가 아니다. 판 안의 제목·문장은 왼쪽(서브는 왼쪽 — 정렬 원칙). -->
+  <div class="optline breadbox">
+    <h3>한입에 느껴지는 차이</h3>
+    <span>겉은 바삭하고 속은 촉촉해 재료와 부드럽게 어우러집니다.</span>
+    <span>질기지 않은 소프트 바게트로 편하게 즐길 수 있습니다.</span>
+  </div>
+  <div class="optline breadbox">
+    <h3>함께 먹을 때 더 맛있도록</h3>
+    <span>마지막 한입까지 맛있게 즐길 수 있도록 빵과 재료, 소스의 조화를 생각합니다.</span>
+  </div>
 </section>
 
 <!-- 3. 뭘 시킬까 -->
@@ -535,13 +545,14 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <!-- 디카페인·오트밀크는 「찾을 수 있어야 하는 정보」라 기계 설명과 같은 불릿에서 꺼냈다(2026-09-24 지시). -->
   <div class="optline">
     <b>주문할 때 바꿀 수 있어요</b>
-    <span>디카페인으로 변경 · 우유 대신 오트밀크로 변경</span>
+    <span>커피는 디카페인으로도 즐길 수 있습니다.</span>
+    <span>우유 대신 오트밀크를 선택할 수 있습니다.</span>
   </div>
 
   <!-- 바로 위 상자와의 간격은 .card+.card 가 낸다 — 인라인 margin-top 을 뺐다. -->
   <div class="card">
     <h3>아그작 아메리카노<span class="badge">NEW</span></h3>
-    <p>아메리카노 아래에 원당을 깔아, 빨대로 마실 때마다 아그작 씹히는 타운만의 커피. 라떼로도 있습니다.</p>
+    <p>아메리카노 아래에 원당을 담아, 빨대로 마실 때마다 원당이 아그작 씹히는 식감을 즐길 수 있습니다. 라떼로도 즐길 수 있습니다.</p>
     <!-- 가격 근거: naver-order-menu.json 의 _source 항목(2026-09-24 수정이 제공). 네이버 결제메뉴에는 없다. -->
     <p class="twoprice"><span>아메리카노 4,800원</span><span>라떼 5,300원</span></p>
   </div>
@@ -639,7 +650,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     <img loading="lazy" decoding="async" src="photos/store-2.jpg" alt="메뉴 그림이 붙은 나무 벽과 창가 바 좌석" width="540" height="720">
     <img loading="lazy" decoding="async" src="photos/store-1.jpg" alt="매장 안 셀프바와 벽에 붙은 타운샌드위치 사인" width="540" height="720">
   </div>
-  <p class="lead stanza">혼자서도, 함께여도 편안하게.<br>타운샌드위치에서 맛있는 식사 시간을 즐겨보세요.</p>
+  <p class="lead stanza">혼자서도, 함께여도 타운샌드위치에서 편안하게 식사를 즐겨보세요.</p>
   <!-- 상자·불릿 없이 볼드 문장으로(2026-09-24 지시). 같은 내용이 FAQ 2번(식사·포장·예약·배달)과
        3번(주차)에 있어 정보가 사라지지 않는다. 불릿 두 개는 서로 다른 정보라 문단도 둘로 나눠 둔다. -->
   <p class="lead stanza bold">매장 식사 · 포장 · 예약 · 배달 가능</p>
@@ -654,16 +665,24 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <!-- 대표님이 준 문안(2026-09-21). 문장·줄바꿈 그대로. -->
   <h2>함께 먹는 자리에도, 타운샌드위치</h2>
   <img loading="lazy" decoding="async" class="photo grouponshot" src="photos/group.jpg" alt="포장 상자에 담겨 테이블에 쌓인 단체주문 샌드위치" width="750" height="1000">
-  <p class="lead stanza">회사 회의부터 학교·학원 행사, 촬영 현장과 각종 모임까지.<br>함께 즐길 샌드위치와 음료를 타운에서 준비해 보세요.</p>
+  <p class="lead stanza">회사 회의부터 학교·학원 행사, 촬영 현장과 각종 모임까지, 함께 즐길 샌드위치와 음료를 타운에서 준비해 보세요.</p>
   <!-- 다섯 줄짜리 상자는 뺐다(2026-09-24 지시). 같은 내용이 전부 아래 FAQ 에 있다 —
        「세트 구성」·「인원수·예산 상담」은 FAQ 4번, 「매장과 동일한 가격」·「서울 지역 배달」·「배달비」는 6번,
-       「최소 수량 없음」은 5번. 되살릴 일이 생기면 FAQ 문구를 그대로 쓰면 된다. -->
-  <p class="lead stanza bold" style="margin-top:20px">주문 날짜와 수량, 예산을 알려주시면<br>메뉴 구성과 수령 일정을 상담해 드립니다.<br>원활한 준비를 위해 미리 전화로 문의해 주세요.</p>
+       「최소 수량 없음」은 5번.
+       예전 볼드 문단(「주문 날짜와 수량, 예산을 알려주시면 메뉴 구성과 수령 일정을 상담…」)은 아래 가격 안내의
+       「인원수와 예산에 맞춰 구성」과 겹쳐서 뺐다(2026-09-24 저녁 지시). 같은 문장이 FAQ 5번에 그대로 있다. -->
   <!-- 「3일 전」은 **권장**이다(2026-09-24 확인: "최소 3일 이전이면 좋을 것 같다").
        마감 시한이 아니므로 「~까지 주문해야 합니다」로 쓰지 않는다 — 급한 주문을 돌려보내게 된다. -->
   <div class="optline">
     <b>주문 시점</b>
     <span>넉넉히 3일 전에 문의해 주시면 준비가 수월합니다. 일정이 급하시면 상황에 따라 가능하니 전화로 확인해 주세요.</span>
+  </div>
+  <!-- 가격 안내 — FAQ 6번의 「매장과 동일한 메뉴 가격」을 본문에서도 보이게(2026-09-24 저녁 지시, 문안 받은 그대로).
+       전화 문의 버튼 바로 위. 주문 금액 조건 할인 문구는 넣지 않는다(2026-09-24 지시). -->
+  <div class="pricenote">
+    <p>샌드위치·음료를 인원수와 예산에 맞춰 구성해 드립니다.</p>
+    <p>단체 배달 주문도 <strong>매장과 동일한 메뉴 가격</strong>으로 제공합니다.</p>
+    <p class="fee">배달비는 지역에 따라 달라지므로 문의 시 안내해 드립니다.</p>
   </div>
   <!-- 세 갈래 문의 경로. 아이콘은 글자를 **거드는** 용도다 — 아이콘만 두지 않는다(2026-09-21 「집모양으로 하면 아무도 몰라」).
        네이버 예약은 잠실점 단체주문 예약 문의 페이지(booking 796414 / item 7989045, 2026-09-21 200 확인). -->
