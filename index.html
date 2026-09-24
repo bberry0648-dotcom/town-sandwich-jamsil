@@ -301,6 +301,10 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 
 /* 역삼점 표시 — 잠실점 문의처와 헷갈리지 않게. 초록 알약(.badge)과 구분되도록 톤을 낮춘다. */
 .badge.alt{background:transparent;color:var(--gray);border:1px solid var(--line);font-weight:500}
+
+/* 아그작 카드의 가격 두 개 — 이름 하나에 가격이 둘이라 .price(오른쪽 붙임)를 못 쓴다. */
+.twoprice{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:9px}
+.twoprice span{font-size:14.5px;font-weight:700;color:var(--green)}
 </style>
 </head>
 <body>
@@ -483,7 +487,8 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     <div><b>스프 세트</b><span>1,000원 할인</span></div>
     <div><b>올인원 세트</b><span>2,000원 할인</span></div>
   </div>
-  <p class="muted setnote">세트 구성과 적용되는 메뉴는 매장에서 확인해 주세요.</p>
+  <!-- 올인원 구성만 확인됐다(2026-09-24). 음료·스프 세트 구성과 적용 메뉴는 자료가 없어 매장 문의로 넘긴다. -->
+  <p class="muted setnote">올인원 세트는 샌드위치·스프·음료 구성입니다.<br>적용되는 메뉴는 매장에서 확인해 주세요.</p>
 </section>
 
 <!-- 4. 커피 -->
@@ -510,6 +515,8 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <div class="card">
     <h3>아그작 아메리카노<span class="badge">NEW</span></h3>
     <p>아메리카노 아래에 원당을 깔아, 빨대로 마실 때마다 아그작 씹히는 타운만의 커피. 라떼로도 있습니다.</p>
+    <!-- 가격 근거: naver-order-menu.json 의 _source 항목(2026-09-24 수정이 제공). 네이버 결제메뉴에는 없다. -->
+    <p class="twoprice"><span>아메리카노 4,800원</span><span>라떼 5,300원</span></p>
   </div>
 
   <!-- 음료 타일 — 메뉴 섹션과 같은 .menugrid/.mcard 를 쓴다(설명 없이 이름·가격만).
@@ -564,6 +571,11 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     </article>
     <article class="mcard">
       <div class="mtxt">
+        <h3>아그작 아메리카노<span class="price">4,800원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
         <h3>고구마 샷 라떼<span class="price">4,900원</span></h3>
       </div>
     </article>
@@ -575,6 +587,11 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     <article class="mcard">
       <div class="mtxt">
         <h3>딸기 말차 라떼<span class="price">4,900원</span></h3>
+      </div>
+    </article>
+    <article class="mcard">
+      <div class="mtxt">
+        <h3>아그작 라떼<span class="price">5,300원</span></h3>
       </div>
     </article>
   </div>
