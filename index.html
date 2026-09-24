@@ -305,6 +305,10 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 /* 아그작 카드의 가격 두 개 — 이름 하나에 가격이 둘이라 .price(오른쪽 붙임)를 못 쓴다. */
 .twoprice{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:9px}
 .twoprice span{font-size:14.5px;font-weight:700;color:var(--green)}
+
+/* 세트 계산 예시 — 할인이 얼마나 되는지 숫자로 보여 준다. 조합은 하나의 예일 뿐이라 「예)」로 시작한다. */
+.setexample{margin-top:8px;font-size:14px;color:var(--ink-2);line-height:1.5}
+.setexample b{display:inline-block;margin-top:3px;font-size:15.5px;font-weight:700;color:var(--green)}
 </style>
 </head>
 <body>
@@ -488,7 +492,11 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
     <div><b>올인원 세트</b><span>2,000원 할인</span></div>
   </div>
   <!-- 올인원 구성만 확인됐다(2026-09-24). 음료·스프 세트 구성과 적용 메뉴는 자료가 없어 매장 문의로 넘긴다. -->
-  <p class="muted setnote">올인원 세트는 샌드위치·스프·음료 구성입니다.<br>적용되는 메뉴는 매장에서 확인해 주세요.</p>
+  <p class="muted setnote">올인원 세트는 샌드위치·스프·음료를 자유롭게 골라 구성합니다.</p>
+  <!-- 예시의 세 가격은 전부 naver-order-menu.json 값이고, 16,500·14,500 은 그 합과 할인액을 더한 **계산값**이다.
+       메뉴 가격이 아니므로 가격 검사(모든 N,NNN원이 원자료에 있어야 함)에서 예외다 — CLAUDE.md 참고.
+       손님이 페이지 안에서 각 가격을 직접 확인할 수 있게 합계를 그대로 보여 준다. -->
+  <p class="setexample">예) 타운샌드위치 + 크림 스프 + 아메리카노<br><b>16,500원 → 14,500원</b></p>
 </section>
 
 <!-- 4. 커피 -->
