@@ -322,6 +322,7 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
 
 /* 바게트 구역은 문단 하나라 .stanza:last-of-type 의 아래 여백까지 붙으면 빈 칸이 커 보인다 — 섹션 패딩만 남긴다. */
 #bread .stanza{margin-bottom:0}
+#bread .stanza+.stanza{margin-top:10px}  /* 본문과 HACCP 한 줄 사이 */
 /* 넓은 화면 전용 줄바꿈. 휴대폰에서는 끄고 화면 폭에 맞춰 접히게 둔다(<br> 뒤 공백이 단어 사이를 이어 준다). */
 @media(max-width:767px){br.pc{display:none}}
 
@@ -400,6 +401,9 @@ footer{padding:28px 0 96px;font-size:13px;color:var(--gray);border-top:1px solid
   <p class="eyebrow">바게트</p>
   <h2>샌드위치와 잘 어울리는 소프트 바게트</h2>
   <p class="lead stanza">바삭한 겉면과 부드러운 속이 어우러진 소프트 바게트.<br class="pc"> 질기지 않아 베어 먹기 편하고,<br class="pc"> 햄과 버터, 채소의 맛을 함께 즐길 수 있습니다.</p>
+  <!-- HACCP 문구 재도입(2026-09-26, 수정이 결정). 근거: ../brand-facts.md §3 「HACCP 인증 베이커리와 함께 개발한 전용 바게트」.
+       **인증 주체는 베이커리다** — 매장·샌드위치가 인증받은 것처럼 읽히는 표현(「HACCP 샌드위치」「HACCP 매장」)으로 바꾸지 말 것. -->
+  <p class="lead stanza bold">HACCP 인증 베이커리와 함께 개발한<br class="pc"> 타운샌드위치 전용 바게트입니다.</p>
 </section>
 
 <!-- 3. 뭘 시킬까 -->
